@@ -195,15 +195,7 @@ namespace MathPlot.Models
         #endregion
         
 
-        //#region 添加数据
-        //public void AddPoint(object obj)
-        //{
-        //    this.PointList.Add(new Cruve_input() {Xpoint = this.Xpoint, Ypoint = this.Ypoint});
-        //}
-
-
-
-        //#endregion
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string propertyname)
