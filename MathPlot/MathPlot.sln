@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathPlot", "MathPlot\MathPlot.csproj", "{7D318802-8E2F-4E08-998B-3544BDEC952A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf_test3", "..\wpf_test3\wpf_test3\wpf_test3.csproj", "{F926B1F1-4C68-4209-ADD8-C54B3D498733}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication6", "..\WpfApplication6\WpfApplication6\WpfApplication6.csproj", "{20B4A9D3-05C8-40A8-8535-2025F0AECFB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D318802-8E2F-4E08-998B-3544BDEC952A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D318802-8E2F-4E08-998B-3544BDEC952A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D318802-8E2F-4E08-998B-3544BDEC952A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D318802-8E2F-4E08-998B-3544BDEC952A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F926B1F1-4C68-4209-ADD8-C54B3D498733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F926B1F1-4C68-4209-ADD8-C54B3D498733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F926B1F1-4C68-4209-ADD8-C54B3D498733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F926B1F1-4C68-4209-ADD8-C54B3D498733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B4A9D3-05C8-40A8-8535-2025F0AECFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B4A9D3-05C8-40A8-8535-2025F0AECFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B4A9D3-05C8-40A8-8535-2025F0AECFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B4A9D3-05C8-40A8-8535-2025F0AECFB4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
