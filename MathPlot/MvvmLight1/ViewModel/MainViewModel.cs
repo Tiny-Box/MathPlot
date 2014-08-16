@@ -62,11 +62,13 @@ namespace MvvmLight1.ViewModel
                 });
         }
 
-        ////public override void Cleanup()
-        ////{
-        ////    // Clean up if needed
+        public override void Cleanup()
+        {
+            // Clean up if needed
 
-        ////    base.Cleanup();
-        ////}
+            base.Cleanup();
+        }
+
+        
     }
 }
