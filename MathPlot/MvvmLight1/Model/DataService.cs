@@ -11,5 +11,12 @@ namespace MvvmLight1.Model
             var item = new DataItem("Welcome to MVVM Light");
             callback(item, null);
         }
+
+        //public void DealStr(Action<Text_test, Exception> callback)
+        //{
+        //    //test str
+
+        //    var item = new Text_test
+        //}
     }
 }

@@ -1,0 +1,72 @@
+﻿<Window x:Class="MvvmlightCommand.WPF4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="550" Width="700"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:my="clr-namespace:MvvmlightCommand.WPF4.TriggerActions"
+        xmlns:GalaSoft_MvvmLight_Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
+        DataContext="{Binding Main,Source={StaticResource Locator}}"
+        mc:Ignorable="d">
+  <StackPanel x:Name="LayoutRoot">
+    <TextBlock Margin="5" Text="{Binding CommandResult,TargetNullValue=请点击按钮测试}"/>
+    <StackPanel Orientation="Horizontal">
+      <Button Command="{Binding SimpleCommand}" Content="简单命令" Margin="5,0,5,0"/>
+      <Button Command="{Binding CanExecuteCommand}" Content="CanExecute命令" Margin="5,0,5,0"/>
+      <CheckBox x:Name="chkCanClick" IsChecked="{Binding CanClick,Mode=TwoWay}" 
+                Content="勾上复选框，CanExecute命令按钮才能变为可用"/>
+      <Button Command="{Binding ParamCommand}" Content="带参数的CanExecute命令"
+              CommandParameter="{Binding CanClick,Mode=OneWay}" Margin="5,0,5,0"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <TextBox x:Name="TextBox1" Margin="5,0,5,0" Width="100">
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="TextChanged">
+            <i:InvokeCommandAction Command="{Binding BehaviourCommand, Mode=OneWay}"
+                                   CommandParameter="{Binding Text,ElementName=TextBox1}"/>
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </TextBox>
+    </StackPanel>
+    <Grid>
+      <Ellipse Fill="AliceBlue" Height="180" Stroke="Black" Margin="10,8">
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="MouseMove">
+            <!--<GalaSoft_MvvmLight_Command:EventToCommand PassEventArgsToCommand="True"
+                                            Command="{Binding MoveMouseCommand}" />-->
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </Ellipse>
+
+      <TextBlock HorizontalAlignment="Center" Text="带事件参数的命令 (鼠标移动事件)"
+                 TextWrapping="Wrap" Grid.Row="7" d:LayoutOverrides="Height"
+                 Grid.ColumnSpan="2" VerticalAlignment="Center"
+                 FontSize="20" FontWeight="Bold"
+                 IsHitTestVisible="False" />
+    </Grid>
+    <StackPanel Orientation="Horizontal">
+      <TextBox x:Name="TextBox2" Text="为空时CanExecute为false" Margin="5,0,5,0" Width="200">
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="TextChanged">
+            <!--<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding BehaviourCommand}"
+                                                       MustToggleIsEnabled="{Binding IsChecked,ElementName=chkMustToggle}"  
+                                                       CommandParameter="{Binding Text,ElementName=TextBox2}" />-->
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </TextBox>
+      <CheckBox x:Name="chkMustToggle" IsChecked="False" Content="MustToggleIsEnabled，勾选则TextBox的可用状态与CanExecute返回值关联"/>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal">
+      <TextBox x:Name="TextBox3" Text="更改文本框的值" Margin="5,0,5,0" Width="200">
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="TextChanged">
+            <!--<my:MapRoutedEventToCommand Command="{Binding CustomBehaviorCommand}" CommandParameter="P1"/>-->
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+
+      </TextBox>
+    </StackPanel>
+  </StackPanel>
+</Window>
