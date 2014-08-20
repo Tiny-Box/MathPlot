@@ -36,7 +36,14 @@ namespace MvvmLight_company.ViewModel
                     }
                     );
             }
-        }  
+        }
+
+        public RelayCommand<object> CloseCommand
+        {
+            get;
+            private set;
+        }
+           
         #endregion
 
         #region close
@@ -97,6 +104,13 @@ namespace MvvmLight_company.ViewModel
                         
                     }
             );
+
+            CloseCommand = new RelayCommand<object>(o =>
+            {
+                MessageBox.Show("OK");
+                ((Window)o).Close();
+
+            });
             #endregion
         }
     }

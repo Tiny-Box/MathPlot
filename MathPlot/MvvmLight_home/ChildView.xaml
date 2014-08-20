@@ -10,7 +10,7 @@
         DataContext="{Binding ViewModelName, Source={StaticResource Locator}}" Height="261.865" Width="287.404">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding ElementName=window}" />
+            <i:InvokeCommandAction CommandName="{Binding LoadedCommand}" CommandParameter="{Binding ElementName=window}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 

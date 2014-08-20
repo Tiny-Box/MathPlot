@@ -80,6 +80,7 @@
       <DependentUpon>ChildView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\DialogCloser.cs" />
+    <Compile Include="MyCommands.cs" />
     <Compile Include="ViewModel\ChildViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

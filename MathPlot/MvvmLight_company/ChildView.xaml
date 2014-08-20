@@ -4,15 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.ignore.com"
-        xmlns:local="clr-namespace:MvvmLight_company.Model"
         mc:Ignorable="d ignore"
         DataContext="{Binding Child, Source={StaticResource Locator}}" 
         Height="261.865" Width="287.404"
-        local:DialogCloser.DialogResult="{Binding DialogResult}">
+        >
 
     <Grid Margin="0,0,0,-21.015">
         <TextBox x:Name="Send" HorizontalAlignment="Left" Height="23" Margin="10.373,61.06,0,0" TextWrapping="Wrap" Text="{Binding SendStr}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="1"/>
         <Button Content="传递" Command="{Binding LoginCommand}"   
           CommandParameter="{Binding SendStr}" Margin="33.343,132.836,73.926,80.868" />
+        <Button Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Content="Button" HorizontalAlignment="Left" Margin="83,193,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
