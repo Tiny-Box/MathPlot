@@ -4,7 +4,7 @@
         Title="MainWindow"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        xmlns:vw="MvvmLightMessenger.WPF4.View"
+        xmlns:vw="clr-namespace:MvvmLightMessenger.WPF4.View"
         xmlns:vm="clr-namespace:MvvmLightMessenger.WPF4.ViewModel"
         Height="400"
         Width="500" WindowStartupLocation="CenterScreen"
