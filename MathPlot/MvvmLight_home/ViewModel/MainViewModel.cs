@@ -108,7 +108,8 @@ namespace MvvmLight_home.ViewModel
            (
                (p) =>
                {
-                   ChildView Child = new ChildView();
+                   ChildViewModel ChildVM = new ChildViewModel();
+                   ChildView Child = new ChildView(ChildVM);
                    Child.Show();
                },
                (p) =>

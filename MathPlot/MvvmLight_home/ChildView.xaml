@@ -4,8 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.ignore.com"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight"
         mc:Ignorable="d ignore"
         DataContext="{Binding ViewModelName, Source={StaticResource Locator}}" Height="261.865" Width="287.404">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding ElementName=window}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid Margin="0,0,0,-21.015">
         <TextBox x:Name="Send" HorizontalAlignment="Left" Height="23" Margin="10.373,61.06,0,0" TextWrapping="Wrap" Text="{Binding SendStr}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="1"/>

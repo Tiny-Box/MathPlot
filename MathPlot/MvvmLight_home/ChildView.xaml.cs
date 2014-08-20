@@ -11,9 +11,10 @@ namespace MvvmLight_home
         /// <summary>
         /// Initializes a new instance of the ChildView class.
         /// </summary>
-        public ChildView()
+        public ChildView(ChildViewModel ma)
         {
             InitializeComponent();
+            this.DataContext = ma;
             Closing += (s, e) => ViewModelLocator.Cleanup();
         }
     }

@@ -56,6 +56,9 @@ namespace MvvmLight_home.ViewModel
             }
         }
 
+        #region close Command
+        public RelayCommand<CancelEventArgs> OnClosingCommand { get; set; }
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the ChildViewModel class.
@@ -80,6 +83,20 @@ namespace MvvmLight_home.ViewModel
                     }
             );
             #endregion
+
+            #region close
+            this.OnClosingCommand = new RelayCommand<CancelEventArgs>(this.OnClosingCommandExecuted);
+            #endregion
         }
+
+        #region close method
+        private void OnClosingCommandExecuted(SessionEndingCancelEventArgs cancelEventArgs)
+        {
+            if (mustCancelClosing)
+            {
+                cancelEventArgs.Cancel = true;
+            }
+        }
+        #endregion
     }
 }
