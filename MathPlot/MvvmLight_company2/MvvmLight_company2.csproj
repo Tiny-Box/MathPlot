@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EFFEDF00-581A-45E6-90FF-5CA07475A82B}</ProjectGuid>
+    <ProjectGuid>{C6E37E76-0AB8-4D5C-90C7-9CB77314CC4F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvvmLight_company</RootNamespace>
-    <AssemblyName>MvvmLight_company</AssemblyName>
+    <RootNamespace>MvvmLight_company2</RootNamespace>
+    <AssemblyName>MvvmLight_company2</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -79,26 +79,17 @@
     <Compile Include="ChildView.xaml.cs">
       <DependentUpon>ChildView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\DialogCloser.cs" />
     <Compile Include="Model\MyCommands.cs" />
-    <Compile Include="MvvmView1.xaml.cs">
-      <DependentUpon>MvvmView1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyCommands.cs" />
     <Compile Include="ViewModel\ChildViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="ChildView.xaml">
+      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MvvmView1.xaml">
-      <SubType>Form</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Skins\MainSkin.xaml">
       <SubType>Designer</SubType>

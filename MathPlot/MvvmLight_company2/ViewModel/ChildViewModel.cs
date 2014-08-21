@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MvvmLight_company.ViewModel
+namespace MvvmLight_company2.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.
@@ -38,15 +38,10 @@ namespace MvvmLight_company.ViewModel
             }
         }
 
-        public RelayCommand<object> CloseCommand
-        {
-            get;
-            private set;
-        }
-           
+        
         #endregion
 
-        
+
 
         private string _sendStr = "ABC";
         public string SendStr
@@ -86,16 +81,11 @@ namespace MvvmLight_company.ViewModel
                         // 发送消息  
                         MessageBox.Show(SendStr);
                         Messenger.Default.Send<string>(SendStr);
-                        
+
                     }
             );
 
-            CloseCommand = new RelayCommand<object>(o =>
-            {
-                MessageBox.Show("OK");
-                ((Window)o).Close();
-
-            });
+            
             #endregion
         }
     }
