@@ -5,13 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Model ="clr-namespace:MvvmLight_company2.Model"
         xmlns:ignore="http://www.ignore.com"
-        mc:Ignorable="d ignore"
-        DataContext="{Binding ViewModelName, Source={StaticResource Locator}}" Height="253.209" Width="342.925">
+        xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+        mc:Ignorable="PresentationOptions"
+        DataContext="{Binding Child, Source={StaticResource Locator}}" Height="253.209" Width="342.925">
 
     <Grid>
         <Button Command="{Binding Source={x:Static Model:MyCommands.Close}}" 
                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
-                Content="关闭" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+                Content="关闭" HorizontalAlignment="Left" Margin="251.525,193.372,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Command="{Binding Plot}"
+                Content="绘图" HorizontalAlignment="Left" Margin="251.525,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Border Background="{Binding SendStr}" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="205.209" Margin="10,10,0,0" VerticalAlignment="Top" Width="221.6">
+            <Canvas>
+                <Path Stroke="Black" StrokeThickness="1">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="{Binding StartPoint}">
+                                <LineSegment Point="{Binding EndPoint}" />
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+            </Canvas>
+        </Border>
+                
+        <TextBlock Text="{Binding SendStr}" HorizontalAlignment="Left" Margin="251.525,49.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
