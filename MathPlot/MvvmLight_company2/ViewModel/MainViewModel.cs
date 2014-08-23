@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 using MvvmLight_company2.Model;
 using MvvmLight_company2.ViewModel;
@@ -46,11 +47,17 @@ namespace MvvmLight_company2.ViewModel
             }
         }
 
+        #region ICommand
         public RelayCommand Open
         {
             get;
             private set;
         }
+        #endregion
+
+        #region delegate
+        public delegate void sendMsg(string testStr);
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -74,7 +81,10 @@ namespace MvvmLight_company2.ViewModel
             (
             () =>
             {
+                
                 ChildViewModel ChildVM = new ChildViewModel();
+                sendMsg d = ChildVM.receiveMsg;
+                d("sending is OK");
                 ChildView Child = new ChildView(ChildVM);
                 Child.Show();
             }
