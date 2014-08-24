@@ -3,7 +3,7 @@ using MvvmLight_home.Model;
 
 namespace MvvmLight_home.Design
 {
-    public class DesignDataService : IDataService
+    public class DesignDataService 
     {
         public void GetData(Action<DataItem, Exception> callback)
         {

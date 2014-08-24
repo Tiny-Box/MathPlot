@@ -16,5 +16,12 @@ namespace MvvmLight_home
             InitializeComponent();
             Closing += (s, e) => ViewModelLocator.Cleanup();
         }
+
+        private void DragMove(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+      
     }
 }

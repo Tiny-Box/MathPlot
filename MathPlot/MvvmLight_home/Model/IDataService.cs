@@ -7,6 +7,6 @@ namespace MvvmLight_home.Model
 {
     public interface IDataService
     {
-        void GetData(Action<DataItem, Exception> callback);
+        void OpenExcel(Action<LineData, Exception> callback);
     }
 }

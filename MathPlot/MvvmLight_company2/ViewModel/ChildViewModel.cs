@@ -171,9 +171,9 @@ namespace MvvmLight_company2.ViewModel
         void addPlot()
         {
             PathFigure pathFigure2 = new PathFigure();
-            pathFigure2.StartPoint = new Point(10, 100);
+            //pathFigure2.StartPoint = new Point(10, 100);
             Point[] polyLinePointArray =
-                new Point[] { new Point(50, 200), new Point(50, 250) };
+                new Point[] { new Point(50, 50), new Point(50, 150) };
             PolyLineSegment myPolyLineSegment = new PolyLineSegment();
             myPolyLineSegment.Points =
                 new PointCollection(polyLinePointArray);

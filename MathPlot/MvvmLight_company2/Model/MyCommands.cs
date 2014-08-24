@@ -16,5 +16,6 @@ namespace MvvmLight_company2.Model
             ((Window)o).Close();
         }
             );
+
     }
 }

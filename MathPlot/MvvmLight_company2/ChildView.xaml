@@ -86,6 +86,8 @@
         </Border>
 
         <TextBlock Text="{Binding SendStr}" HorizontalAlignment="Left" Margin="251.525,70.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Rectangle            
+            Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="35" Margin="251.525,137.209,0,0" Stroke="Black" VerticalAlignment="Top" Width="71"/>
 
 
     </Grid>

@@ -54,16 +54,7 @@ namespace MvvmLight_home.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
-            "CA1822:MarkMembersAsStatic",
-            Justification = "This non-static member is needed for data binding purposes.")]
-        public ChildViewModel Child
-        { 
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ChildViewModel>();
-            }
-        }
+        
 
         /// <summary>
         /// Cleans up all the resources.

@@ -17,5 +17,10 @@ namespace MvvmLight_company2
             InitializeComponent();
             this.DataContext = ma;
         }
+
+        private void Rectangle_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

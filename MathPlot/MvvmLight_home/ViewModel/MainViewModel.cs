@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MvvmLight_home.Model;
 
 using System.Windows;
+using System.Windows.Media;
 
 namespace MvvmLight_home.ViewModel
 {
@@ -28,27 +29,9 @@ namespace MvvmLight_home.ViewModel
         /// Gets the WelcomeTitle property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-        public string WelcomeTitle
-        {
-            get
-            {
-                return _welcomeTitle;
-            }
 
-            set
-            {
-                if (_welcomeTitle == value)
-                {
-                    return;
-                }
-
-                _welcomeTitle = value;
-                RaisePropertyChanged(WelcomeTitlePropertyName);
-            }
-        }
 
         private string _testStr = "abc";
-
         public string TestStr
         {
             get
@@ -68,8 +51,28 @@ namespace MvvmLight_home.ViewModel
             }
         }
 
+        private PathGeometry _myPathGeometry = new PathGeometry();
+        public PathGeometry myPathGeometry
+        {
+            get
+            {
+                return _myPathGeometry;
+            }
+            set
+            {
+                _myPathGeometry = value;
+                RaisePropertyChanged("myPathGeometry");
+            }
+        }
+
 
         #region ICommand
+        public RelayCommand Open
+        {
+            get;
+            private set;
+        }
+
         public RelayCommand ReciveCommand
         {
             get;
@@ -86,49 +89,59 @@ namespace MvvmLight_home.ViewModel
        
         #endregion
 
+
+        #region Method
+        void Plot(Point[] line)
+        {
+            PathFigure pathFigure2 = new PathFigure();
+            //pathFigure2.StartPoint = new Point(10, 100);
+            Point[] polyLinePointArray = line;
+            PolyLineSegment myPolyLineSegment = new PolyLineSegment();
+            myPolyLineSegment.Points =
+                new PointCollection(polyLinePointArray);
+            pathFigure2.Segments.Add(myPolyLineSegment);
+
+            myPathGeometry.Figures.Add(pathFigure2);
+        }
+        #endregion
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IDataService dataService)
         {
             _dataService = dataService;
-            _dataService.GetData(
-                (item, error) =>
-                {
-                    if (error != null)
-                    {
-                        // Report error here
-                        return;
-                    }
+            //_dataService.GetData(
+            //    (item, error) =>
+            //    {
+            //        if (error != null)
+            //        {
+            //            // Report error here
+            //            return;
+            //        }
 
-                    WelcomeTitle = item.Title;
-                });
+            //        WelcomeTitle = item.Title;
+            //    }
+            //);
 
-            BehaviourCommand = new RelayCommand<string>
-           (
-               (p) =>
-               {
-                   ChildViewModel ChildVM = new ChildViewModel();
-                   ChildView Child = new ChildView(ChildVM);
-                   Child.Show();
-               },
-               (p) =>
-               {
-                   return !string.IsNullOrEmpty(p);
-               }
-           );  
-
-            ReciveCommand = new RelayCommand
+            Open = new RelayCommand
             (
                 () =>
-                    {
-                        Messenger.Default.Register<string>(this,
-                            n =>
+                {
+                    MessageBox.Show("Button is ok");
+                    _dataService.OpenExcel(
+                        (item, error) =>
+                        {
+                            if (error != null)
                             {
-                                MessageBox.Show(n);
+                                return;
                             }
-                    );
-                    }
+
+                            Plot(item.Line.ToArray());
+                            MessageBox.Show("VM is OK");
+                        }
+                        );
+                }
             );
         }
 
