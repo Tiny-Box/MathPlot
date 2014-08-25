@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.IO;
+using System.Data;
+using System.Data.OleDb;
 
 namespace MvvmLight_home.Model
 {
@@ -34,12 +36,10 @@ namespace MvvmLight_home.Model
                     {
                         using (myStream)
                         {
-                            Point a = new Point(10, 50);
-                            Point b = new Point(100, 150);
+                            DataSet dtTemp = excelData(openFileDialog1.FileName);
+                            
 
                             var item = new LineData();
-                            item.Line.Add(a);
-                            item.Line.Add(b);
                             callback(item, null);
                         }
 
@@ -51,5 +51,25 @@ namespace MvvmLight_home.Model
                 }
             }
         }
+
+        public DataSet excelData(string fileName)
+        {
+            string connStr = "";
+            if (fileName.EndsWith("xls"))
+                connStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1\"";
+            else
+                connStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 12.0;HDR=YES;IMEX=1\"";
+            DataSet dtTemp = new DataSet();
+
+            OleDbConnection objConn = new OleDbConnection(connStr);
+            objConn.Open();
+
+            OleDbDataAdapter oda = new OleDbDataAdapter("select * from [Sheet1$]", objConn);
+
+            oda.Fill(dtTemp);
+            return dtTemp;
+        }
+
+        public 
     }
 }
