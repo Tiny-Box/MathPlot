@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.IO;
+using System.Linq;
 using System.Data;
 using System.Data.OleDb;
 
@@ -15,42 +16,53 @@ namespace MvvmLight_home.Model
             var item = new DataItem("Welcome to MVVM Light");
             callback(item, null);
         }
-
+        delegate int judgetitle(object a);
         public void OpenExcel(Action<LineData, Exception> callback)
         {
-            Stream myStream = null;
+
+            
             Microsoft.Win32.OpenFileDialog openFileDialog1 = new Microsoft.Win32.OpenFileDialog();
 
-            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.InitialDirectory = "D:\\";
             openFileDialog1.Filter = "Excel files (*.xls, *xlsx)|*.xls; *xlsx";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
 
-            bool? userClickedOK = openFileDialog1.ShowDialog();
+            openFileDialog1.ShowDialog();
 
-            if (userClickedOK == true)
+            DataSet dtTemp = excelData(openFileDialog1.FileName);
+
+            judgetitle gwl = (p) =>
             {
+
                 try
                 {
-                    if ((myStream = openFileDialog1.OpenFile()) != null)
-                    {
-                        using (myStream)
-                        {
-                            DataSet dtTemp = excelData(openFileDialog1.FileName);
-                            
-
-                            var item = new LineData();
-                            callback(item, null);
-                        }
-
-                    }
+                    double a = double.Parse(p.ToString());
+                    return 0;
                 }
-                catch (Exception ex)
+                catch (FormatException)
                 {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    return 1;
                 }
+
+            };
+
+            int b = 
+            int i = gwl(dtTemp.Tables[0].Rows[0][0]);
+
+            var item = new LineData();
+            item.StartPoint = new Point(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString());
+            
+            for (i = i+1; i < dtTemp.Tables[0].Rows.Count - 1; i++)
+            {
+                item.Line.Add(new Point(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString())));
             }
+            
+            callback(item, null);
+
+
         }
+
 
         public DataSet excelData(string fileName)
         {
@@ -58,7 +70,7 @@ namespace MvvmLight_home.Model
             if (fileName.EndsWith("xls"))
                 connStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1\"";
             else
-                connStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 12.0;HDR=YES;IMEX=1\"";
+                connStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 12.0;HDR=NO;IMEX=1\"";
             DataSet dtTemp = new DataSet();
 
             OleDbConnection objConn = new OleDbConnection(connStr);
@@ -67,9 +79,17 @@ namespace MvvmLight_home.Model
             OleDbDataAdapter oda = new OleDbDataAdapter("select * from [Sheet1$]", objConn);
 
             oda.Fill(dtTemp);
+
+
+            
+
+            int i = gwl(dtTemp.Tables[0].Rows[0][0]);
+            MessageBox.Show(i.ToString());
+            MessageBox.Show(dtTemp.Tables[0].Rows[1][0].GetType().ToString());
+            MessageBox.Show(dtTemp.Tables[0].Rows[0][0].GetType().ToString());
             return dtTemp;
         }
 
-        public 
+
     }
 }
