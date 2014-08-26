@@ -37,9 +37,7 @@ namespace MvvmLight_home.Model
                         using (myStream)
                         {
                             DataSet dtTemp = excelData(openFileDialog1.FileName);
-
-                            MessageBox.Show(dtTemp.Tables[0].Rows[0][0].GetType().ToString());
-                            MessageBox.Show(dtTemp.Tables[0].Rows[0][1].GetType().ToString());
+                            
 
                             var item = new LineData();
                             callback(item, null);
@@ -57,7 +55,6 @@ namespace MvvmLight_home.Model
         public DataSet excelData(string fileName)
         {
             string connStr = "";
-            fileName = "D:\\Book1.xlsx";
             if (fileName.EndsWith("xls"))
                 connStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1\"";
             else
@@ -73,19 +70,6 @@ namespace MvvmLight_home.Model
             return dtTemp;
         }
 
-        //public LineData fillData(DataSet dtTemp)
-        //{
-        //    //LineData line = new LineData();
-         
-        //    //int start = (x) =>
-        //    //    {
-        //    //        try 
-        //    //    }
-
-        //    //for (int i = 1; i < dtTemp.Tables[0].Rows.Count - 1; i++)
-        //    //{
-
-        //    //}
-        //}
+        public 
     }
 }
