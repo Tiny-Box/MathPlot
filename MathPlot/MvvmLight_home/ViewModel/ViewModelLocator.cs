@@ -39,6 +39,7 @@ namespace MvvmLight_home.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<InputViewModel>();
         }
 
         /// <summary>
@@ -54,8 +55,15 @@ namespace MvvmLight_home.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
 
+        
+        public InputViewModel Input
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<InputViewModel>();
+            }
+        }
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>

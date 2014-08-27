@@ -51,6 +51,19 @@ namespace MvvmLight_home.ViewModel
             }
         }
 
+        private PathGeometry _tempData = new PathGeometry();
+        public PathGeometry tempData
+        {
+            get
+            {
+                return _tempData;
+            }
+            set
+            {
+                _tempData = value;
+            }
+        }
+
         private PathGeometry _myPathGeometry = new PathGeometry();
         public PathGeometry myPathGeometry
         {
@@ -73,35 +86,40 @@ namespace MvvmLight_home.ViewModel
             private set;
         }
 
-        public RelayCommand ReciveCommand
+        public RelayCommand Plot
         {
             get;
             private set;
         }
 
-        public RelayCommand<string> BehaviourCommand
+        public RelayCommand OpenInput
         {
             get;
             private set;
         }
-
         
        
         #endregion
 
 
         #region Method
-        void Plot(Point[] line)
+        void setline(LineData line)
         {
-            PathFigure pathFigure2 = new PathFigure();
-            //pathFigure2.StartPoint = new Point(10, 100);
-            Point[] polyLinePointArray = line;
+            PathFigure pathFigure = new PathFigure();
+           
+            pathFigure.StartPoint = line.StartPoint;
+           
             PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-            myPolyLineSegment.Points =
-                new PointCollection(polyLinePointArray);
-            pathFigure2.Segments.Add(myPolyLineSegment);
+            myPolyLineSegment.Points = new PointCollection(line.Line.ToArray());
+            
+            pathFigure.Segments.Add(myPolyLineSegment);
 
-            myPathGeometry.Figures.Add(pathFigure2);
+            tempData.Figures.Add(pathFigure);
+        }
+
+        void Plotline()
+        {
+            myPathGeometry = tempData;
         }
         #endregion
 
@@ -111,24 +129,12 @@ namespace MvvmLight_home.ViewModel
         public MainViewModel(IDataService dataService)
         {
             _dataService = dataService;
-            //_dataService.GetData(
-            //    (item, error) =>
-            //    {
-            //        if (error != null)
-            //        {
-            //            // Report error here
-            //            return;
-            //        }
-
-            //        WelcomeTitle = item.Title;
-            //    }
-            //);
 
             Open = new RelayCommand
             (
                 () =>
                 {
-                    MessageBox.Show("Button is ok");
+                    
                     _dataService.OpenExcel(
                         (item, error) =>
                         {
@@ -137,10 +143,27 @@ namespace MvvmLight_home.ViewModel
                                 return;
                             }
 
-                            Plot(item.Line.ToArray());
-                            MessageBox.Show("VM is OK");
+                            setline(item);
+                            MessageBox.Show("Data has been inputed");
                         }
                         );
+                }
+            );
+
+            OpenInput = new RelayCommand
+            (
+                () =>
+                {
+                    InputView input = new InputView();
+                    input.Show();
+                }
+            );
+
+            Plot = new RelayCommand
+            (
+                () =>
+                {
+                    Plotline();
                 }
             );
         }

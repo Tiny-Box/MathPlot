@@ -109,14 +109,18 @@
                     <MenuItem
                         Command="{Binding Open}"
                         Header="从Excel中导入..." FontSize="14" />
-                    <MenuItem Header="人工输入..." FontSize="14" />
+                    <MenuItem 
+                        Command="{Binding OpenInput}"
+                        Header="人工输入..." FontSize="14" />
                 </MenuItem>
                 <MenuItem Header="保存图片..."/>
                 <Separator/>
                 <MenuItem Header="退出..." FontSize="16"/>
             </MenuItem>
             <MenuItem Header="绘图" FontSize="16">
-                <MenuItem Header="开始绘图..."/>
+                <MenuItem 
+                    Command="{Binding Plot}"
+                    Header="开始绘图..."/>
                 <MenuItem Header="删除指定曲线..."/>
                 <MenuItem Header="清空绘图板..."/>
             </MenuItem>

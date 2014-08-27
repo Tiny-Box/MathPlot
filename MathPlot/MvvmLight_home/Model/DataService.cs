@@ -47,11 +47,11 @@ namespace MvvmLight_home.Model
 
             };
 
-            int b = 
+            
             int i = gwl(dtTemp.Tables[0].Rows[0][0]);
 
             var item = new LineData();
-            item.StartPoint = new Point(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString());
+            item.StartPoint = new Point(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString()));
             
             for (i = i+1; i < dtTemp.Tables[0].Rows.Count - 1; i++)
             {
@@ -83,10 +83,10 @@ namespace MvvmLight_home.Model
 
             
 
-            int i = gwl(dtTemp.Tables[0].Rows[0][0]);
-            MessageBox.Show(i.ToString());
-            MessageBox.Show(dtTemp.Tables[0].Rows[1][0].GetType().ToString());
-            MessageBox.Show(dtTemp.Tables[0].Rows[0][0].GetType().ToString());
+            //int i = gwl(dtTemp.Tables[0].Rows[0][0]);
+            //MessageBox.Show(i.ToString());
+            //MessageBox.Show(dtTemp.Tables[0].Rows[1][0].GetType().ToString());
+            //MessageBox.Show(dtTemp.Tables[0].Rows[0][0].GetType().ToString());
             return dtTemp;
         }
 

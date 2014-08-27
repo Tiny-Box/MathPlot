@@ -10,16 +10,10 @@ namespace MvvmLight_home.Model
     {
         public List<Point> Line = new List<Point>();
 
-        public Point Point
+        public Point StartPoint
         {
-            get
-            {
-                return Line[-1];
-            }
-            set
-            {
-                Line.Add(value);
-            }
+            get;
+            set;
         }
     }
 }
