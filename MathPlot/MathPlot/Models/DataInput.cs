@@ -47,7 +47,7 @@ namespace MathPlot.Models
             {
                 this.PointList.Add(new Cruve_input { X = float.Parse(this.Xpoint), Y = float.Parse(this.Ypoint) });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("请输入数字！");
             }
