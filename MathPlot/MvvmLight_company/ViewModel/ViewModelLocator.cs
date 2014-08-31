@@ -39,6 +39,8 @@ namespace MvvmLight_company.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ChildViewModel>();
+            SimpleIoc.Default.Register<Child_sViewModel>();
         }
 
         /// <summary>
@@ -60,6 +62,14 @@ namespace MvvmLight_company.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ChildViewModel>();
+            }
+        }
+
+        public Child_sViewModel Child_s
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<Child_sViewModel>();
             }
         }
         

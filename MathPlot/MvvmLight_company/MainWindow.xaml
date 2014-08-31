@@ -19,16 +19,9 @@
     </Window.Resources>
 
     <Grid x:Name="LayoutRoot">
-
-        <TextBlock FontSize="36"
-                   FontWeight="Bold"
-                   Foreground="Purple"
-                   Text="{Binding WelcomeTitle}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   TextWrapping="Wrap" />
         <Button Command="{Binding BehaviourCommand}" Content="带参数的CanExecute命令"  
                 CommandParameter="{Binding TestStr,Mode=OneWay}" Margin="63,10,72,234"/>
         <Button Command="{Binding ReciveCommand}" Content="接受消息" HorizontalAlignment="Left" Margin="100,240,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock Text="{Binding TestStr}" HorizontalAlignment="Left" Margin="63,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="131"/>
     </Grid>
 </Window>

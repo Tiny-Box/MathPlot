@@ -5,6 +5,7 @@ using MvvmLight_home.Model;
 
 using System.Windows;
 using System.Windows.Media;
+using System.Collections.ObjectModel;
 
 namespace MvvmLight_home.ViewModel
 {
@@ -166,6 +167,29 @@ namespace MvvmLight_home.ViewModel
                     Plotline();
                 }
             );
+
+            Messenger.Default.Register<ObservableCollection<inputPoint>>(this, "Main",
+                       n =>
+                       {
+                           PathFigure pathFigure = new PathFigure();
+
+                           pathFigure.StartPoint = new Point(n[0].X, n[0].Y);
+                           
+                           Point[] polyLinePointArray = new Point[n.Count-1];
+                           for(int i = 1; i < n.Count; i++)
+                           {
+                               polyLinePointArray[i-1] = new Point(n[i].X, n[i].Y);
+                           }
+
+                           PolyLineSegment myPolyLineSegment = new PolyLineSegment();
+                           myPolyLineSegment.Points = new PointCollection(polyLinePointArray);
+                           
+                           
+                           pathFigure.Segments.Add(myPolyLineSegment);
+
+                           tempData.Figures.Add(pathFigure);
+                       }
+           );
         }
 
         ////public override void Cleanup()

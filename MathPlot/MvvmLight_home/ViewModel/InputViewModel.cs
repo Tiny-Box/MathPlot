@@ -5,6 +5,7 @@ using System.Windows;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 using MvvmLight_home.Model;
 
@@ -33,11 +34,6 @@ namespace MvvmLight_home.ViewModel
         }
 
         #region Value
-        public class inputPoint
-        {
-            public double X;
-            public double Y;
-        }
 
         public ObservableCollection<inputPoint> line { get; set; }
 
@@ -76,7 +72,6 @@ namespace MvvmLight_home.ViewModel
             try
             {
                 line.Add(new inputPoint { X = double.Parse(x), Y = double.Parse(y) });
-                MessageBox.Show(line[0].X.ToString());
             }
             catch(Exception)
             {
@@ -104,6 +99,11 @@ namespace MvvmLight_home.ViewModel
             get;
             private set;
         }
+        public RelayCommand<object> close
+        {
+            get;
+            private set;
+        }
         #endregion
 
         /// <summary>
@@ -126,6 +126,13 @@ namespace MvvmLight_home.ViewModel
                 {
                     Delete();
                 }
+            );
+            close = new RelayCommand<object>
+            (o =>
+            {
+                Messenger.Default.Send<ObservableCollection<inputPoint>>(line, "Main");
+                ((Window)o).Close();
+            }
             );
         }
     }

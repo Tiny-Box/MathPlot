@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Data;
 using System.Data.OleDb;
+using Microsoft.Win32;
 
 namespace MvvmLight_home.Model
 {
@@ -21,14 +22,15 @@ namespace MvvmLight_home.Model
         {
 
             
-            Microsoft.Win32.OpenFileDialog openFileDialog1 = new Microsoft.Win32.OpenFileDialog();
+            OpenFileDialog openFileDialog1 = new Microsoft.Win32.OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "D:\\";
             openFileDialog1.Filter = "Excel files (*.xls, *xlsx)|*.xls; *xlsx";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.RestoreDirectory = true;
+            
+            if (openFileDialog1.ShowDialog() == true)
+            {
 
-            openFileDialog1.ShowDialog();
+            }
 
             DataSet dtTemp = excelData(openFileDialog1.FileName);
 

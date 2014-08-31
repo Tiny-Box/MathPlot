@@ -23,32 +23,13 @@ namespace MvvmLight_company.ViewModel
         /// <summary>
         /// The <see cref="WelcomeTitle" /> property's name.
         /// </summary>
-        public const string WelcomeTitlePropertyName = "WelcomeTitle";
-
-        private string _welcomeTitle = string.Empty;
+       
 
         /// <summary>
         /// Gets the WelcomeTitle property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-        public string WelcomeTitle
-        {
-            get
-            {
-                return _welcomeTitle;
-            }
-
-            set
-            {
-                if (_welcomeTitle == value)
-                {
-                    return;
-                }
-
-                _welcomeTitle = value;
-                RaisePropertyChanged(WelcomeTitlePropertyName);
-            }
-        }
+      
 
         private string _testStr = "abc";
 
@@ -94,26 +75,16 @@ namespace MvvmLight_company.ViewModel
         /// </summary>
         public MainViewModel(IDataService dataService)
         {
-            _dataService = dataService;
-            _dataService.GetData(
-                (item, error) =>
-                {
-                    if (error != null)
-                    {
-                        // Report error here
-                        return;
-                    }
-
-                    WelcomeTitle = item.Title;
-                });
+            
 
             BehaviourCommand = new RelayCommand<string>
            (
                (p) =>
                {
-                   ChildViewModel ChildVM = new ChildViewModel();
-                   ChildView Child = new ChildView(ChildVM);
+                   ChildView Child = new ChildView();
                    Child.Show();
+                   ChildView_s Child_s = new ChildView_s();
+                   Child_s.Show();
                },
                (p) =>
                {
@@ -126,13 +97,15 @@ namespace MvvmLight_company.ViewModel
                 () =>
                 {
                     MessageBox.Show("OK!");
-                    Messenger.Default.Register<string>(this,
+                    
+               
+                }
+            );
+            Messenger.Default.Register<string>(this,"Main",
                         n =>
                         {
-                            MessageBox.Show(n);
+                            TestStr = n;
                         }
-                );
-                }
             );
         }
 

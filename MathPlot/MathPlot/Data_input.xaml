@@ -54,10 +54,8 @@
         <Button Command="{Binding Add}" Content="添加" HorizontalAlignment="Left" Margin="229,32,0,0" VerticalAlignment="Top" Width="45"/>
         <Grid  HorizontalAlignment="Left" Height="141" Margin="10,80,0,0" VerticalAlignment="Top" Width="264">
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Inputmodel.PointList}" HorizontalAlignment="Center" VerticalAlignment="Top" Height="141" Width="260">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="X" Binding="{Binding Path=X}" Width="130" />
-                    <DataGridTextColumn Header="Y" Binding="{Binding Path=Y}" Width="130" />
-                </DataGrid.Columns>
+                
+                
             </DataGrid>
             
         </Grid>

@@ -18,7 +18,13 @@ namespace MvvmLight_company.ViewModel
 
         #region ICommand
 
-        public RelayCommand LoginCommand
+        public RelayCommand sendToMain
+        {
+            get;
+            private set;
+        }
+
+        public RelayCommand sendToChild_s
         {
             get;
             private set;
@@ -74,7 +80,7 @@ namespace MvvmLight_company.ViewModel
         {
 
             #region
-            LoginCommand = new RelayCommand
+            sendToMain = new RelayCommand
             (
                     () =>
                     {
@@ -85,9 +91,18 @@ namespace MvvmLight_company.ViewModel
 
                         // 发送消息  
                         MessageBox.Show(SendStr);
-                        Messenger.Default.Send<string>(SendStr);
+                        Messenger.Default.Send<string>(SendStr,"Main");
                         
                     }
+            );
+
+            sendToChild_s = new RelayCommand
+            (
+                () =>
+                {
+                    MessageBox.Show(SendStr);
+                    Messenger.Default.Send<string>(SendStr, "Child_s");
+                }
             );
 
             CloseCommand = new RelayCommand<object>(o =>

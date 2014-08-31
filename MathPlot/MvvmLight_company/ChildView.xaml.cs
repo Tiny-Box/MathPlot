@@ -11,10 +11,11 @@ namespace MvvmLight_company
         /// <summary>
         /// Initializes a new instance of the ChildView class.
         /// </summary>
-        public ChildView(ChildViewModel ma)
+        public ChildView()
         {
             InitializeComponent();
-            this.DataContext = ma;
+            
         }
+        
     }
 }
