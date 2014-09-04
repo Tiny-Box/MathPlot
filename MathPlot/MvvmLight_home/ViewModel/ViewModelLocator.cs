@@ -40,6 +40,7 @@ namespace MvvmLight_home.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<InputViewModel>();
+            SimpleIoc.Default.Register<ArgvViewModel>();
         }
 
         /// <summary>
@@ -62,6 +63,14 @@ namespace MvvmLight_home.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<InputViewModel>();
+            }
+        }
+
+        public ArgvViewModel Argv
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ArgvViewModel>();
             }
         }
         /// <summary>

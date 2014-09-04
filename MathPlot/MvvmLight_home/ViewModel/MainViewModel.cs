@@ -98,7 +98,12 @@ namespace MvvmLight_home.ViewModel
             get;
             private set;
         }
-        
+
+        public RelayCommand OpenArgv
+        {
+            get;
+            private set;
+        }
        
         #endregion
 
@@ -164,7 +169,9 @@ namespace MvvmLight_home.ViewModel
             (
                 () =>
                 {
-                    Plotline();
+                    Argv argv = new Argv();
+                    argv.Show();
+                    //Plotline();
                 }
             );
 
