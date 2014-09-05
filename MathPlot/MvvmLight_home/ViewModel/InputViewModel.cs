@@ -36,6 +36,7 @@ namespace MvvmLight_home.ViewModel
         #region Value
 
         public ObservableCollection<inputPoint> line { get; set; }
+        public ObservableCollection<LineData> testline { get; set; }
 
         private string _x;
         public string x
@@ -71,6 +72,7 @@ namespace MvvmLight_home.ViewModel
         {
             try
             {
+                
                 line.Add(new inputPoint { X = double.Parse(x), Y = double.Parse(y) });
             }
             catch(Exception)
