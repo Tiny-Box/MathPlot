@@ -15,5 +15,27 @@ namespace MvvmLight_home.Model
             get;
             set;
         }
+
+        public double X
+        {
+            get
+            {
+                return Line[Line.Count - 1].X;
+            }
+            set;
+        }
+        public double Y
+        {
+            get
+            {
+                return Line[Line.Count - 1].Y;
+            }
+            set;
+        }
+
+        public void newPoint()
+        {
+            Line.Add(new Point(X, Y));
+        }
     }
 }
