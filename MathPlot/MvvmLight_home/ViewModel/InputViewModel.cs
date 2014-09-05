@@ -35,8 +35,8 @@ namespace MvvmLight_home.ViewModel
 
         #region Value
 
-        public ObservableCollection<inputPoint> line { get; set; }
-        public ObservableCollection<LineData> testline { get; set; }
+        
+        public LineData line { get; set; }
 
         private string _x;
         public string x
@@ -72,8 +72,16 @@ namespace MvvmLight_home.ViewModel
         {
             try
             {
-                
-                line.Add(new inputPoint { X = double.Parse(x), Y = double.Parse(y) });
+                if (line.Line.Count != 0)
+                {
+                    line.newPoint(double.Parse(x), double.Parse(y));
+                }
+                else
+                {
+                    line.StartPoint = new Point(double.Parse(x), double.Parse(y));
+                    line.newPoint(double.Parse(x), double.Parse(y));
+                }
+              
             }
             catch(Exception)
             {
@@ -83,9 +91,9 @@ namespace MvvmLight_home.ViewModel
 
         public void Delete()
         {
-            if (line.Count != 0)
+            if (line.Line.Count != 0)
             {
-                line.RemoveAt(line.Count - 1);
+                line.Line.RemoveAt(line.Line.Count - 1);
             }
         }
         #endregion
@@ -113,7 +121,10 @@ namespace MvvmLight_home.ViewModel
         /// </summary>
         public InputViewModel(IDataService dataService)
         {
-            this.line = new ObservableCollection<inputPoint>();
+            
+            this.line = new LineData();
+            this.line.Line = new ObservableCollection<Point>();
+            
             testStr = "abc";
             add = new RelayCommand
             (
@@ -132,7 +143,8 @@ namespace MvvmLight_home.ViewModel
             close = new RelayCommand<object>
             (o =>
             {
-                Messenger.Default.Send<ObservableCollection<inputPoint>>(line, "Main");
+                
+                Messenger.Default.Send<LineData>(line, "Main");
                 ((Window)o).Close();
             }
             );

@@ -92,11 +92,11 @@
             Content="+" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="207,50,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" />
         <Button Width="25" Height="25" Command="{Binding delete}"
         	Content="-" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="248,50,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}"/>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding line}" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Height="148" Width="258">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding line.Line}" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Height="148" Width="258">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="X" Binding="{Binding Path=X}" Width="130" />
                 <DataGridTextColumn Header="Y" Binding="{Binding Path=Y}" Width="130" />
-            </DataGrid.Columns>
+            </DataGrid.Columns>  
         </DataGrid>
         <DockPanel HorizontalAlignment="Left" Height="32" LastChildFill="False" Margin="20,245,0,0" VerticalAlignment="Top" Width="258">
             <Button Command="{Binding close}"

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,12 @@ namespace MvvmLight_home.Model
 {
     public class LineData
     {
-        public List<Point> Line = new List<Point>();
+
+        public ObservableCollection<Point> Line
+        {
+            get;
+            set;
+        }
 
         public Point StartPoint
         {
@@ -22,7 +28,7 @@ namespace MvvmLight_home.Model
             {
                 return Line[Line.Count - 1].X;
             }
-            set;
+            
         }
         public double Y
         {
@@ -30,12 +36,12 @@ namespace MvvmLight_home.Model
             {
                 return Line[Line.Count - 1].Y;
             }
-            set;
+            
         }
 
-        public void newPoint()
+        public void newPoint(double x, double y)
         {
-            Line.Add(new Point(X, Y));
+            Line.Add(new Point(x, y));
         }
     }
 }

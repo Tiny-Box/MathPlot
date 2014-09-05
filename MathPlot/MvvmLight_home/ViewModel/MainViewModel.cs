@@ -116,7 +116,7 @@ namespace MvvmLight_home.ViewModel
             pathFigure.StartPoint = line.StartPoint;
            
             PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-            myPolyLineSegment.Points = new PointCollection(line.Line.ToArray());
+            myPolyLineSegment.Points = new PointCollection(line.Line);
             
             pathFigure.Segments.Add(myPolyLineSegment);
 
@@ -169,29 +169,29 @@ namespace MvvmLight_home.ViewModel
             (
                 () =>
                 {
-                    Argv argv = new Argv();
-                    argv.Show();
-                    //Plotline();
+                    //Argv argv = new Argv();
+                    //argv.Show();
+                    Plotline();
                 }
             );
 
-            Messenger.Default.Register<ObservableCollection<inputPoint>>(this, "Main",
+            Messenger.Default.Register<LineData>(this, "Main",
                        n =>
                        {
                            PathFigure pathFigure = new PathFigure();
 
-                           pathFigure.StartPoint = new Point(n[0].X, n[0].Y);
-                           
-                           Point[] polyLinePointArray = new Point[n.Count-1];
-                           for(int i = 1; i < n.Count; i++)
+                           pathFigure.StartPoint = n.StartPoint;
+
+                           Point[] polyLinePointArray = new Point[n.Line.Count - 1];
+                           for (int i = 1; i < n.Line.Count; i++)
                            {
-                               polyLinePointArray[i-1] = new Point(n[i].X, n[i].Y);
+                               polyLinePointArray[i - 1] = new Point(n.Line[i].X, n.Line[i].Y);
                            }
 
                            PolyLineSegment myPolyLineSegment = new PolyLineSegment();
                            myPolyLineSegment.Points = new PointCollection(polyLinePointArray);
-                           
-                           
+
+
                            pathFigure.Segments.Add(myPolyLineSegment);
 
                            tempData.Figures.Add(pathFigure);
