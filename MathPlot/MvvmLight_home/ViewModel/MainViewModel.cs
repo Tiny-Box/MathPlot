@@ -110,17 +110,8 @@ namespace MvvmLight_home.ViewModel
 
         #region Method
         void setline(LineData line)
-        {
-            PathFigure pathFigure = new PathFigure();
-           
-            pathFigure.StartPoint = line.StartPoint;
-           
-            PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-            myPolyLineSegment.Points = new PointCollection(line.Line);
-            
-            pathFigure.Segments.Add(myPolyLineSegment);
-
-            tempData.Figures.Add(pathFigure);
+        {       
+            tempData.Figures.Add(line.ToPathFigure());
         }
 
         void Plotline()
@@ -149,7 +140,8 @@ namespace MvvmLight_home.ViewModel
                                 return;
                             }
 
-                            setline(item);
+                            tempData.Figures.Add(item.ToPathFigure());
+                            
                             MessageBox.Show("Data has been inputed");
                         }
                         );
@@ -178,23 +170,23 @@ namespace MvvmLight_home.ViewModel
             Messenger.Default.Register<LineData>(this, "Main",
                        n =>
                        {
-                           PathFigure pathFigure = new PathFigure();
+                           //PathFigure pathFigure = new PathFigure();
 
-                           pathFigure.StartPoint = n.StartPoint;
+                           //pathFigure.StartPoint = n.StartPoint;
 
-                           Point[] polyLinePointArray = new Point[n.Line.Count - 1];
-                           for (int i = 1; i < n.Line.Count; i++)
-                           {
-                               polyLinePointArray[i - 1] = new Point(n.Line[i].X, n.Line[i].Y);
-                           }
+                           //Point[] polyLinePointArray = new Point[n.Line.Count - 1];
+                           //for (int i = 1; i < n.Line.Count; i++)
+                           //{
+                           //    polyLinePointArray[i - 1] = new Point(n.Line[i].X, n.Line[i].Y);
+                           //}
 
-                           PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-                           myPolyLineSegment.Points = new PointCollection(polyLinePointArray);
+                           //PolyLineSegment myPolyLineSegment = new PolyLineSegment();
+                           //myPolyLineSegment.Points = new PointCollection(polyLinePointArray);
 
 
-                           pathFigure.Segments.Add(myPolyLineSegment);
+                           //pathFigure.Segments.Add(myPolyLineSegment);
 
-                           tempData.Figures.Add(pathFigure);
+                           tempData.Figures.Add(n.ToPathFigure());
                        }
            );
         }

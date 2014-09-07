@@ -29,38 +29,40 @@ namespace MvvmLight_home.Model
             
             if (openFileDialog1.ShowDialog() == true)
             {
+                DataSet dtTemp = excelData(openFileDialog1.FileName);
 
+                judgetitle gwl = (p) =>
+                {
+
+                    try
+                    {
+                        double.Parse(p.ToString());
+                        return 0;
+                    }
+                    catch (FormatException)
+                    {
+                        return 1;
+                    }
+
+                };
+
+
+                int i = gwl(dtTemp.Tables[0].Rows[0][0]);
+
+                var item = new LineData();
+                item.Line = new System.Collections.ObjectModel.ObservableCollection<Point>();
+
+                item.StartPoint = new Point(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString()));
+
+                for (; i < dtTemp.Tables[0].Rows.Count; i++)
+                {
+                    item.newPoint(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString()));
+                }
+
+                callback(item, null);
             }
 
-            DataSet dtTemp = excelData(openFileDialog1.FileName);
-
-            judgetitle gwl = (p) =>
-            {
-
-                try
-                {
-                    double a = double.Parse(p.ToString());
-                    return 0;
-                }
-                catch (FormatException)
-                {
-                    return 1;
-                }
-
-            };
-
             
-            int i = gwl(dtTemp.Tables[0].Rows[0][0]);
-
-            var item = new LineData();
-            item.StartPoint = new Point(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString()));
-            
-            for (i = i+1; i < dtTemp.Tables[0].Rows.Count - 1; i++)
-            {
-                item.Line.Add(new Point(double.Parse(dtTemp.Tables[0].Rows[i][0].ToString()), double.Parse(dtTemp.Tables[0].Rows[i][1].ToString())));
-            }
-            
-            callback(item, null);
 
 
         }
