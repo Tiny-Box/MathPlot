@@ -4,10 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.ignore.com"
+        xmlns:Model="clr-namespace:MvvmLight_home.Model"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d ignore"
         Width="300" Height="300"
 		WindowStyle="None" Background="{x:Null}" AllowsTransparency="True"
         DataContext="{Binding Argv, Source={StaticResource Locator}}">
+    <Window.Resources>
+        <ObjectDataProvider MethodName="GetType" 
+                            ObjectType="{x:Type sys:Type}" x:Key="colorsTypeOdp">
+            <ObjectDataProvider.MethodParameters>
+                <sys:String>System.Windows.Media.Colors, PresentationCore,Version=3.0.0.0, Culture=neutral,PublicKeyToken=31bf3856ad364e35</sys:String>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider ObjectInstance="{StaticResource colorsTypeOdp}"  
+                            MethodName="GetProperties" x:Key="colorPropertiesOdp">
+        </ObjectDataProvider>
+    </Window.Resources>
+
 
     <Grid>
     	<Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="280" RadiusX="10" RadiusY="10">
@@ -15,26 +29,41 @@
     			<DropShadowEffect Opacity="0.3" ShadowDepth="3"/>
     		</Rectangle.Effect>
     	</Rectangle>
-    	<TextBox Text="Title" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" Margin="45,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+    	<TextBox Text="{Binding Title}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" Margin="45,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
     	<WrapPanel HorizontalAlignment="Left" Height="28" Margin="45,95,0,0" VerticalAlignment="Top" Width="215">
     		<Label Content="X取值范围：" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top"/>
-    		<TextBox VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" Text="0" VerticalAlignment="center" Width="55"/>
+            <TextBox Text="{Binding Xmin}" VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" VerticalAlignment="center" Width="55"/>
     		<Label Content="~"/>
-    		<TextBox VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" Text="100" Width="55"/>
+    		<TextBox Text="{Binding Xmax}" VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" Width="55"/>
     	</WrapPanel>
 		<WrapPanel HorizontalAlignment="Left" Height="28" Margin="45,135,0,0" VerticalAlignment="Top" Width="215">
     		<Label Content="Y取值范围：" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top"/>
-    		<TextBox VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" Text="0" VerticalAlignment="center" Width="55"/>
+    		<TextBox Text="{Binding Ymin}" VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" VerticalAlignment="center" Width="55"/>
     		<Label Content="~"/>
-    		<TextBox VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" Text="100" Width="55"/>
+    		<TextBox Text="{Binding Ymax}" VerticalContentAlignment="Center" Height="20" TextWrapping="Wrap" Width="55"/>
     	</WrapPanel>
 		<WrapPanel HorizontalAlignment="Left" Height="28" Margin="45,185,0,0" VerticalAlignment="Top" Width="220">
-			<Label Content="颜色：" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="77.2433333333333"/>
-			<ComboBox HorizontalAlignment="Left" VerticalAlignment="center" Width="128.9"/>
-		</WrapPanel>
+            <Label Content="颜色：" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="45"/>
+            <ComboBox HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="center" Width="160"
+                      SelectedValue="{Binding color}"
+                      ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Margin="1,3" Height="10" Width="40"></Rectangle>
+                            <TextBlock Text="{Binding Name}" Margin="2,0"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
 		<WrapPanel HorizontalAlignment="Left" Height="30" Margin="45,235,0,0" VerticalAlignment="Top" Width="220">
-			<Button Content="确定" Width="75" Margin="2,5,33,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20"/>
-			<Button Content="取消" Width="75" Margin="33,5,2,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20"/>
+			<Button Command="{Binding OK}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                    Content="确定" Width="75" Margin="2,5,33,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20"/>
+			<Button Command="{Binding Source={x:Static Model:MyCommands.Close}}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                    Content="取消" Width="75" Margin="33,5,2,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20"/>
 		</WrapPanel>
     </Grid>
 </Window>
