@@ -162,10 +162,12 @@
             </MenuItem>
         </Menu>
         
-        <Grid HorizontalAlignment="Left" Height="521" Margin="10,69,0,0" VerticalAlignment="Top" Width="780">
+        <Grid HorizontalAlignment="Left" Height="491" Margin="10,99,0,0" VerticalAlignment="Top" Width="780">
             <Canvas>
                 <Path Data="{Binding myPathGeometry}" Stroke="Black" StrokeThickness="1"/>
             </Canvas>
         </Grid>
+        <Grid HorizontalAlignment="Left" Height="35" Margin="10,64,0,0" VerticalAlignment="Top" Width="780"/>
+
     </Grid>
 </Window>

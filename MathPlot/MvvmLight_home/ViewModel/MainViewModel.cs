@@ -52,8 +52,8 @@ namespace MvvmLight_home.ViewModel
             }
         }
 
-        private PathGeometry _tempData = new PathGeometry();
-        public PathGeometry tempData
+        private LineData _tempData = new LineData();
+        public LineData tempData
         {
             get
             {
@@ -64,7 +64,7 @@ namespace MvvmLight_home.ViewModel
                 _tempData = value;
             }
         }
-
+        
         private PathGeometry _myPathGeometry = new PathGeometry();
         public PathGeometry myPathGeometry
         {
@@ -109,14 +109,9 @@ namespace MvvmLight_home.ViewModel
 
 
         #region Method
-        void setline(LineData line)
-        {       
-            tempData.Figures.Add(line.ToPathFigure());
-        }
-
         void Plotline()
         {
-            myPathGeometry = tempData;
+            myPathGeometry.Figures.Add(tempData.ToPathFigure());
         }
         #endregion
 
@@ -140,7 +135,7 @@ namespace MvvmLight_home.ViewModel
                                 return;
                             }
 
-                            tempData.Figures.Add(item.ToPathFigure());
+                            tempData = item;
                             
                             MessageBox.Show("Data has been inputed");
                         }
@@ -170,7 +165,7 @@ namespace MvvmLight_home.ViewModel
             Messenger.Default.Register<LineData>(this, "Main",
                        n =>
                        {
-                           tempData.Figures.Add(n.ToPathFigure());
+                           tempData = n;
                        }
            );
 
