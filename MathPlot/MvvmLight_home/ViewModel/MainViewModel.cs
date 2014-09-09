@@ -104,6 +104,12 @@ namespace MvvmLight_home.ViewModel
             get;
             private set;
         }
+		
+		public RelayCommand<object> drag
+        {
+            get;
+            private set;
+        }
        
         #endregion
 
@@ -159,6 +165,13 @@ namespace MvvmLight_home.ViewModel
                     Argv argv = new Argv();
                     argv.Show();
                     //Plotline();
+                }
+            );
+			drag = new RelayCommand<object>
+            (
+                o =>
+                {
+                    ((Window)o).DragMove();
                 }
             );
 

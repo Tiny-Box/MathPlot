@@ -125,11 +125,18 @@ namespace MvvmLight_home.ViewModel
             //get;
             //set;
         }
+        #region ICommand
         public RelayCommand<object> OK
         {
             get;
             set;
         }
+        public RelayCommand<object> drag
+        {
+            get;
+            private set;
+        }
+        #endregion
         /// <summary>
         /// Initializes a new instance of the ArgvViewModel class.
         /// </summary>
@@ -143,6 +150,14 @@ namespace MvvmLight_home.ViewModel
                         ((Window)o).Close();
                     }
                 );
+
+            drag = new RelayCommand<object>
+           (
+               o =>
+               {
+                   ((Window)o).DragMove();
+               }
+           );
         }
     }
 }

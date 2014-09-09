@@ -114,6 +114,12 @@ namespace MvvmLight_home.ViewModel
             get;
             private set;
         }
+
+        public RelayCommand<object> drag
+        {
+            get;
+            private set;
+        }
         #endregion
 
         /// <summary>
@@ -147,6 +153,13 @@ namespace MvvmLight_home.ViewModel
                 Messenger.Default.Send<LineData>(line, "Main");
                 ((Window)o).Close();
             }
+            );
+            drag = new RelayCommand<object>
+            (
+                o =>
+                {
+                    ((Window)o).DragMove();
+                }
             );
         }
     }

@@ -15,9 +15,5 @@ namespace MvvmLight_home
             InitializeComponent();
         }
 
-        private void Rectangle_MouseLeftButtonDown_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
     }
 }
