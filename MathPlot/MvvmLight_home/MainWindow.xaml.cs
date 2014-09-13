@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Windows.Media;
+using System.Windows;
+using System.Windows.Input;
 using MvvmLight_home.ViewModel;
 
 namespace MvvmLight_home
@@ -17,6 +19,24 @@ namespace MvvmLight_home
             Closing += (s, e) => ViewModelLocator.Cleanup();
         }
 
-      
+        private Pen drawingPen = new Pen(Brushes.SteelBlue, 3);
+        private Size squareSize = new Size(30, 30);
+
+        private void plottest(DrawingVisual visual, Point topLeftCorner, bool isSelected)
+        {
+            using (DrawingContext dc = visual.RenderOpen())
+            {
+                Brush brush = Brushes.Black;
+                dc.DrawRectangle(brush, drawingPen, new Rect(topLeftCorner, squareSize));
+            }
+        }
+
+        public void plotax(object obj, RoutedEventArgs e)
+        {
+            DrawingVisual visual = new DrawingVisual();
+            plottest(visual, new Point(10, 10), false);
+            vtest.AddVisual(visual);
+        }
+
     }
 }

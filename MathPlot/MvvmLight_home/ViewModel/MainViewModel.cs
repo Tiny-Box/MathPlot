@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+
+using MvvmLight_home;
 using MvvmLight_home.Model;
 
 using System.Windows;
@@ -78,7 +80,11 @@ namespace MvvmLight_home.ViewModel
                 RaisePropertyChanged("myPathGeometry");
             }
         }
-
+        public testV a
+        {
+            get;
+            set;
+        }
 
         #region ICommand
         public RelayCommand Open
@@ -87,7 +93,7 @@ namespace MvvmLight_home.ViewModel
             private set;
         }
 
-        public RelayCommand Plot
+        public RelayCommand<object> Plot
         {
             get;
             private set;
@@ -118,6 +124,14 @@ namespace MvvmLight_home.ViewModel
         void Plotline()
         {
             myPathGeometry.Figures.Add(tempData.ToPathFigure());
+        }
+        private void plottest(DrawingVisual visual, Point topLeftCorner, bool isSelected)
+        {
+            using (DrawingContext dc = visual.RenderOpen())
+            {
+                Pen drawingPen = new Pen(Brushes.Black, 3);
+                dc.DrawLine(drawingPen, new Point(0, 50), new Point(50, 0));
+            }
         }
         #endregion
 
@@ -158,13 +172,13 @@ namespace MvvmLight_home.ViewModel
                 }
             );
 
-            Plot = new RelayCommand
+            Plot = new RelayCommand<object>
             (
-                () =>
+                o =>
                 {
-                    Argv argv = new Argv();
-                    argv.Show();
-                    //Plotline();
+                    DrawingVisual visual = new DrawingVisual();
+                    plottest(visual, new Point(10, 10), false);
+                    ((testV)o).AddVisual(visual);
                 }
             );
 			drag = new RelayCommand<object>
@@ -174,6 +188,8 @@ namespace MvvmLight_home.ViewModel
                     ((Window)o).DragMove();
                 }
             );
+            a = new testV();
+            
 
             Messenger.Default.Register<LineData>(this, "Main",
                        n =>

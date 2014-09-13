@@ -91,6 +91,7 @@
     <Compile Include="Model\ArgvL.cs" />
     <Compile Include="Model\LineData.cs" />
     <Compile Include="Model\MyCommands.cs" />
+    <Compile Include="Model\testV.cs" />
     <Compile Include="ViewModel\ArgvViewModel.cs" />
     <Compile Include="ViewModel\InputViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

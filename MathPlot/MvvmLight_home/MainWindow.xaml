@@ -126,7 +126,7 @@
 				<MenuItem 
 					Command="{Binding Plot}"
 					Header="开始绘图..."/>
-				<MenuItem Header="删除指定曲线..."/>
+				<MenuItem Header="删除指定曲线..." Click="plotax"/>
 				<MenuItem Header="清空绘图板..."/>
 			</MenuItem>
 			<MenuItem Header="计算" FontSize="16">
@@ -168,7 +168,9 @@
 		</Menu>
         
 		<Grid HorizontalAlignment="Left" Height="491" Margin="10,99,0,0" VerticalAlignment="Top" Width="780">
-			<Canvas>
+            <Model:testV x:Name="vtest"></Model:testV>
+            <Canvas>
+                <ContentPresenter Content="{Binding a}" Height="200" Width="200" Canvas.Left="251" Canvas.Top="129"></ContentPresenter>
 				<Path Data="{Binding myPathGeometry}" Stroke="Black" StrokeThickness="1"/>
 			</Canvas>
 		</Grid>
