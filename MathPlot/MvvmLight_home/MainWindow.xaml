@@ -23,59 +23,59 @@
             <Style x:Key="TitleStyle1" TargetType="{x:Type Rectangle}"/>
 
             <Style x:Key="ButtonFocusVisual">
-            	<Setter Property="Control.Template">
-            		<Setter.Value>
-            			<ControlTemplate>
-            				<Rectangle StrokeDashArray="1 2" StrokeThickness="1" Stroke="Black" SnapsToDevicePixels="true" Margin="2"/>
-            			</ControlTemplate>
-            		</Setter.Value>
-            	</Setter>
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle StrokeDashArray="1 2" StrokeThickness="1" Stroke="Black" SnapsToDevicePixels="true" Margin="2"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
             <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
-            	<GradientStop Color="#F3F3F3" Offset="0"/>
-            	<GradientStop Color="#EBEBEB" Offset="0.5"/>
-            	<GradientStop Color="#DDDDDD" Offset="0.5"/>
-            	<GradientStop Color="#CDCDCD" Offset="1"/>
+                <GradientStop Color="#F3F3F3" Offset="0"/>
+                <GradientStop Color="#EBEBEB" Offset="0.5"/>
+                <GradientStop Color="#DDDDDD" Offset="0.5"/>
+                <GradientStop Color="#CDCDCD" Offset="1"/>
             </LinearGradientBrush>
             <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
             <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
-            	<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
-            	<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
-            	<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
-            	<Setter Property="BorderThickness" Value="1"/>
-            	<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            	<Setter Property="HorizontalContentAlignment" Value="Center"/>
-            	<Setter Property="VerticalContentAlignment" Value="Center"/>
-            	<Setter Property="Padding" Value="1"/>
-            	<Setter Property="Template">
-            		<Setter.Value>
-            			<ControlTemplate TargetType="{x:Type Button}">
-            				<Grid x:Name="grid" RenderTransformOrigin="0.5,0.5" Margin="0,0,4,4">
-            					<Grid.RenderTransform>
-            						<TransformGroup>
-            							<ScaleTransform/>
-            							<SkewTransform/>
-            							<RotateTransform/>
-            							<TranslateTransform/>
-            						</TransformGroup>
-            					</Grid.RenderTransform>
-            					<Ellipse x:Name="ellipse" Fill="{TemplateBinding Background}">
-            						<Ellipse.Effect>
-            							<DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="0.215"/>
-            						</Ellipse.Effect>
-            					</Ellipse>
-            					<ContentPresenter HorizontalAlignment="Center" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Margin="0,-1,0,0"/>
-            				</Grid>
-            				<ControlTemplate.Triggers>
-            					<Trigger Property="IsKeyboardFocused" Value="true"/>
-            					<Trigger Property="ToggleButton.IsChecked" Value="true"/>
-            					<Trigger Property="IsEnabled" Value="false">
-            						<Setter Property="Foreground" Value="#ADADAD"/>
-            					</Trigger>
-            				</ControlTemplate.Triggers>
-            			</ControlTemplate>
-            		</Setter.Value>
-            	</Setter>
+                <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+                <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5" Margin="0,0,4,4">
+                                <Grid.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Grid.RenderTransform>
+                                <Ellipse x:Name="ellipse" Fill="{TemplateBinding Background}">
+                                    <Ellipse.Effect>
+                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="0.215"/>
+                                    </Ellipse.Effect>
+                                </Ellipse>
+                                <ContentPresenter HorizontalAlignment="Center" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Margin="0,-1,0,0"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="true"/>
+                                <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="#ADADAD"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
         </ResourceDictionary>
@@ -85,96 +85,95 @@
         <Binding Path="Main" Source="{StaticResource Locator}"/>
     </Window.DataContext>
 
-	<Grid x:Name="LayoutRoot">
-		<Rectangle
+    <Grid x:Name="LayoutRoot">
+        <Rectangle
 			Fill="White" HorizontalAlignment="Left" Height="580" Margin="10,10,0,0" Stroke="White" VerticalAlignment="Top" Width="780" RadiusX="10" RadiusY="10">
-			<Rectangle.Effect>
-				<DropShadowEffect BlurRadius="5" Opacity="0.3"/>
-			</Rectangle.Effect>
-		</Rectangle>
-		<Grid x:Name="titlebar" 
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="5" Opacity="0.3"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid x:Name="titlebar" 
 			HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
-			<Rectangle Fill="#FF2E2E2E" HorizontalAlignment="Left" Height="15.5" Margin="0,14.5,0,0" VerticalAlignment="Top" Width="780"/>
-			<Rectangle
+            <Rectangle Fill="#FF2E2E2E" HorizontalAlignment="Left" Height="15.5" Margin="0,14.5,0,0" VerticalAlignment="Top" Width="780"/>
+            <Rectangle
 				Fill="#FF2E2E2E" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="780" Style="{DynamicResource TitleStyle1}" RadiusY="10" RadiusX="10" >
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="MouseLeftButtonDown">
-					<Custom:EventToCommand Command="{Binding drag, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"/>
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
-				</Rectangle>	
-			<Button
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <Custom:EventToCommand Command="{Binding drag, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Rectangle>
+            <Button
 				Command="{Binding Source={x:Static Model:MyCommands.Close}}"
 				CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
 				Content="×"  Margin="750.5,3.5,0,-1.5"  Width="25" Height="25" Style="{DynamicResource ButtonStyle1}" Background="#FFDE7721" FontSize="18"/>
-		</Grid>
-		<Menu HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="780" Margin="10,40,0,0" Background="White">
-			<MenuItem FontSize="16" Header="文件" >
-				<MenuItem Header="导入" FontSize="16">
-					<MenuItem
+        </Grid>
+        <Menu HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="780" Margin="10,40,0,0" Background="White">
+            <MenuItem FontSize="16" Header="文件" >
+                <MenuItem Header="导入" FontSize="16">
+                    <MenuItem
 						Command="{Binding Open}"
 						Header="从Excel中导入..." FontSize="14" />
-					<MenuItem 
+                    <MenuItem 
 						Command="{Binding OpenInput}"
 						Header="人工输入..." FontSize="14" />
-				</MenuItem>
-				<MenuItem Header="保存图片..."/>
-				<Separator/>
-				<MenuItem Header="退出..." FontSize="16"/>
-			</MenuItem>
-			<MenuItem Header="绘图" FontSize="16">
-				<MenuItem 
+                </MenuItem>
+                <MenuItem Header="保存图片..."/>
+                <Separator/>
+                <MenuItem Header="退出..." FontSize="16"/>
+            </MenuItem>
+            <MenuItem Header="绘图" FontSize="16">
+                <MenuItem 
 					Command="{Binding Plot}"
 					Header="开始绘图..."/>
-				<MenuItem Header="删除指定曲线..." Click="plotax"/>
-				<MenuItem Header="清空绘图板..."/>
-			</MenuItem>
-			<MenuItem Header="计算" FontSize="16">
-				<MenuItem Header="拟合">
-					<MenuItem Header="一次直线拟合..."  FontSize="14"/>
-					<MenuItem Header="N次直线拟合..." FontSize="14"/>
-					<MenuItem Header="指数函数拟合..." FontSize="14"/>
-					<MenuItem Header="对数函数拟合..." FontSize="14"/>
-				</MenuItem>
-				<MenuItem Header="选定点斜率">
-					<MenuItem Header="手动选取..." FontSize="14"/>
-					<MenuItem Header="按规律选取..." FontSize="14"/>
-				</MenuItem>
-				<MenuItem Header="最大值">
-					<MenuItem Header="选定区域..." FontSize="14"/>
-					<MenuItem Header="全图" FontSize="14"/>
-				</MenuItem>
-				<MenuItem Header="平均值">
-					<MenuItem Header="选定区域..." FontSize="14"/>
-					<MenuItem Header="全图" FontSize="14"/>
-				</MenuItem>
-				<MenuItem Header="最小值">
-					<MenuItem Header="选定区域..." FontSize="14"/>
-					<MenuItem Header="全图" FontSize="14"/>
-				</MenuItem>
-				<MenuItem Header="斜率最大处">
-					<MenuItem Header="选定区域..." FontSize="14"/>
-					<MenuItem Header="全图" FontSize="14"/>
-				</MenuItem>
-				<MenuItem Header="平滑化曲线..."/>
-			</MenuItem>
-			<MenuItem Header="选项" FontSize="16">
-				<MenuItem Header="图像选项..."/>
-			</MenuItem>
-			<MenuItem Header="帮助" FontSize="16">
-				<MenuItem Header="帮助文档..."/>
-				<MenuItem Header="关于..."/>
-			</MenuItem>
-		</Menu>
-        
-		<Grid HorizontalAlignment="Left" Height="491" Margin="10,99,0,0" VerticalAlignment="Top" Width="780">
-            <Model:testV x:Name="vtest"></Model:testV>
-            <Canvas>
-                <ContentPresenter Content="{Binding a}" Height="200" Width="200" Canvas.Left="251" Canvas.Top="129"></ContentPresenter>
-				<Path Data="{Binding myPathGeometry}" Stroke="Black" StrokeThickness="1"/>
-			</Canvas>
-		</Grid>
-		<Grid HorizontalAlignment="Left" Height="35" Margin="10,64,0,0" VerticalAlignment="Top" Width="780"/>
+                <MenuItem Header="删除指定曲线..." Click="plotax"/>
+                <MenuItem Header="清空绘图板..."/>
+            </MenuItem>
+            <MenuItem Header="计算" FontSize="16">
+                <MenuItem Header="拟合">
+                    <MenuItem Header="一次直线拟合..."  FontSize="14"/>
+                    <MenuItem Header="N次直线拟合..." FontSize="14"/>
+                    <MenuItem Header="指数函数拟合..." FontSize="14"/>
+                    <MenuItem Header="对数函数拟合..." FontSize="14"/>
+                </MenuItem>
+                <MenuItem Header="选定点斜率">
+                    <MenuItem Header="手动选取..." FontSize="14"/>
+                    <MenuItem Header="按规律选取..." FontSize="14"/>
+                </MenuItem>
+                <MenuItem Header="最大值">
+                    <MenuItem Header="选定区域..." FontSize="14"/>
+                    <MenuItem Header="全图" FontSize="14"/>
+                </MenuItem>
+                <MenuItem Header="平均值">
+                    <MenuItem Header="选定区域..." FontSize="14"/>
+                    <MenuItem Header="全图" FontSize="14"/>
+                </MenuItem>
+                <MenuItem Header="最小值">
+                    <MenuItem Header="选定区域..." FontSize="14"/>
+                    <MenuItem Header="全图" FontSize="14"/>
+                </MenuItem>
+                <MenuItem Header="斜率最大处">
+                    <MenuItem Header="选定区域..." FontSize="14"/>
+                    <MenuItem Header="全图" FontSize="14"/>
+                </MenuItem>
+                <MenuItem Header="平滑化曲线..."/>
+            </MenuItem>
+            <MenuItem Header="选项" FontSize="16">
+                <MenuItem Header="图像选项..."/>
+            </MenuItem>
+            <MenuItem Header="帮助" FontSize="16">
+                <MenuItem Header="帮助文档..."/>
+                <MenuItem Header="关于..."/>
+            </MenuItem>
+        </Menu>
 
-	</Grid>
+        <Grid HorizontalAlignment="Left" Height="491" Margin="10,99,0,0" VerticalAlignment="Top" Width="780">
+            <Canvas>
+                
+                <Path Data="{Binding myPathGeometry}" Stroke="Black" StrokeThickness="1"/>
+            </Canvas>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="35" Margin="10,64,0,0" VerticalAlignment="Top" Width="780"/>
+
+    </Grid>
 </Window>

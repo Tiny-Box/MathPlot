@@ -42,14 +42,29 @@ namespace MvvmLight_home.Model
             base.RemoveLogicalChild(visual);
         }
 
-        public void plottest()
+        private Pen drawingPen = new Pen(Brushes.SteelBlue, 3);
+        private Size squareSize = new Size(30, 30);
+
+        private void plottest(DrawingVisual visual, Point topLeftCorner, bool isSelected)
         {
-            DrawingVisual visual = new DrawingVisual();
             using (DrawingContext dc = visual.RenderOpen())
             {
-                Pen drawingPen = new Pen(Brushes.Black, 3);
-                dc.DrawLine(drawingPen, new Point(0, 50), new Point(50, 0));
+                Brush brush = Brushes.Black;
+                dc.DrawRectangle(brush, drawingPen, new Rect(topLeftCorner, squareSize));
             }
+        }
+
+        public void plottest()
+        {
+            //DrawingVisual visual = new DrawingVisual();
+            //using (DrawingContext dc = visual.RenderOpen())
+            //{
+            //    Pen drawingPen = new Pen(Brushes.Black, 3);
+            //    dc.DrawLine(drawingPen, new Point(0, 50), new Point(50, 0));
+            //}
+            DrawingVisual visual = new DrawingVisual();
+            plottest(visual, new Point(10, 10), false);
+            this.AddVisual(visual);
         }
     }
 }

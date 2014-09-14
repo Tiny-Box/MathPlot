@@ -35,7 +35,7 @@ namespace MvvmLight_home
         {
             DrawingVisual visual = new DrawingVisual();
             plottest(visual, new Point(10, 10), false);
-            vtest.AddVisual(visual);
+            //vtest.AddVisual(visual);
         }
 
     }

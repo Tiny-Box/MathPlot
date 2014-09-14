@@ -89,6 +89,7 @@
       <DependentUpon>InputView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ArgvL.cs" />
+    <Compile Include="Model\Axis.cs" />
     <Compile Include="Model\LineData.cs" />
     <Compile Include="Model\MyCommands.cs" />
     <Compile Include="Model\testV.cs" />

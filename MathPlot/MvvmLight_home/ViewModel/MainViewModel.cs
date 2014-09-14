@@ -93,7 +93,7 @@ namespace MvvmLight_home.ViewModel
             private set;
         }
 
-        public RelayCommand<object> Plot
+        public RelayCommand Plot
         {
             get;
             private set;
@@ -172,13 +172,14 @@ namespace MvvmLight_home.ViewModel
                 }
             );
 
-            Plot = new RelayCommand<object>
+            Plot = new RelayCommand
             (
-                o =>
+                ()=>
                 {
+                    a = new testV();
                     DrawingVisual visual = new DrawingVisual();
-                    plottest(visual, new Point(10, 10), false);
-                    ((testV)o).AddVisual(visual);
+                    a.plottest();
+                    
                 }
             );
 			drag = new RelayCommand<object>
