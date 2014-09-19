@@ -33,10 +33,15 @@ namespace MvvmLight_home
 
         public void plotax(object obj, RoutedEventArgs e)
         {
-            DrawingVisual visual = new DrawingVisual();
-            plottest(visual, new Point(10, 10), false);
-            //vtest.AddVisual(visual);
-        }
 
+            Yaxis.plotY();
+            Xaxis.plotX();
+            Xaxis.plotZ();
+        }
+        public void Clear(object obj, RoutedEventArgs e)
+        {
+            Xaxis.Clear();
+            Yaxis.Clear();
+        }
     }
 }
