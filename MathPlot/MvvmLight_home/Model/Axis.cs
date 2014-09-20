@@ -113,6 +113,16 @@ namespace MvvmLight_home.Model
                 //分度线
                 for (int i = 0; i < 6; i++)
                 {
+                    string str = (MIN + i * division).ToString();
+                    FormattedText formattedText = new FormattedText(
+                                                                   str,
+                                                                   System.Globalization.CultureInfo.GetCultureInfo("en-us"),
+                                                                   FlowDirection.LeftToRight,
+                                                                   new Typeface("Verdana"),
+                                                                   10,
+                                                                   Brushes.Black);
+
+                    dc.DrawText(formattedText, new Point(LEFT_ZERO + DIVISION * i - 2, this.Height - BOTTOM_ZERO + 5));
                     dc.DrawLine(pen, new Point(LEFT_ZERO + DIVISION * i, this.Height - BOTTOM_ZERO), new Point(LEFT_ZERO + DIVISION * i, this.Height - BOTTOM_ZERO - 3));
                 }
                 //三角
