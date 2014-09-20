@@ -80,11 +80,6 @@ namespace MvvmLight_home.ViewModel
                 RaisePropertyChanged("myPathGeometry");
             }
         }
-        public testV a
-        {
-            get;
-            set;
-        }
 
         #region ICommand
         public RelayCommand Open
@@ -176,9 +171,7 @@ namespace MvvmLight_home.ViewModel
             (
                 ()=>
                 {
-                    a = new testV();
-                    DrawingVisual visual = new DrawingVisual();
-                    a.plottest();
+
                     
                 }
             );
@@ -189,7 +182,7 @@ namespace MvvmLight_home.ViewModel
                     ((Window)o).DragMove();
                 }
             );
-            a = new testV();
+
             
 
             Messenger.Default.Register<LineData>(this, "Main",

@@ -1,7 +1,11 @@
 ﻿using System.Windows.Media;
 using System.Windows;
 using System.Windows.Input;
+
 using MvvmLight_home.ViewModel;
+using MvvmLight_home.Model;
+
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MvvmLight_home
 {
@@ -17,25 +21,21 @@ namespace MvvmLight_home
         {
             InitializeComponent();
             Closing += (s, e) => ViewModelLocator.Cleanup();
+            Messenger.Default.Register<LineData>(this, "Main",
+                n =>
+                {
+                    tempData = n;
+                }
+            );
         }
 
-        private Pen drawingPen = new Pen(Brushes.SteelBlue, 3);
-        private Size squareSize = new Size(30, 30);
-
-        private void plottest(DrawingVisual visual, Point topLeftCorner, bool isSelected)
-        {
-            using (DrawingContext dc = visual.RenderOpen())
-            {
-                Brush brush = Brushes.Black;
-                dc.DrawRectangle(brush, drawingPen, new Rect(topLeftCorner, squareSize));
-            }
-        }
-
+        private LineData tempData = new LineData();
+        
         public void plotax(object obj, RoutedEventArgs e)
         {
 
-            Yaxis.plotY();
-            Xaxis.plotX();
+            Yaxis.plotY(10000, 1);
+            Xaxis.plotX(10, 1);
             Xaxis.plotZ();
         }
         public void Clear(object obj, RoutedEventArgs e)

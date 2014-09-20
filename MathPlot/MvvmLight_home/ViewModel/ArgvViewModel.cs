@@ -109,9 +109,6 @@ namespace MvvmLight_home.ViewModel
                 }
             }
         }
-        #endregion
-
-
         public string color
         {
             get
@@ -120,11 +117,15 @@ namespace MvvmLight_home.ViewModel
             }
             set
             {
-                lineArgv.color = (Color)ColorConverter.ConvertFromString(value.Split(' ')[1]);;
+                lineArgv.color = (Color)ColorConverter.ConvertFromString(value.Split(' ')[1]); ;
             }
             //get;
             //set;
         }
+        #endregion
+
+
+
         #region ICommand
         public RelayCommand<object> OK
         {
@@ -147,6 +148,7 @@ namespace MvvmLight_home.ViewModel
                     (o) =>
                     {
                         Messenger.Default.Send<ArgvL>(lineArgv, "Main");
+                        Messenger.Default.Send<ArgvL>(lineArgv, "Axis");
                         ((Window)o).Close();
                     }
                 );

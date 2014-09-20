@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GalaSoft.MvvmLight.Messaging;
+
 namespace MvvmLight_home.Model
 {
     public class Axis:Canvas
@@ -15,10 +17,11 @@ namespace MvvmLight_home.Model
         private int BOTTOM = 26;
         private int BOTTOM_ZERO = 33;
         private int LEFT = 25;
-        private int LEFT_ZERO = 33;
+        private int LEFT_ZERO = 50;
         private int RIGHT = 8;
         private static int AXISTHICKNESS = 3;
 
+        
 
         private List<Visual> visuals = new List<Visual>();
 
@@ -65,44 +68,56 @@ namespace MvvmLight_home.Model
 
         protected Pen pen = new Pen(Brushes.Black, AXISTHICKNESS);
 
-        public void plotY()
+        public void plotY(double MAX, double MIN)
         {
             DrawingVisual visual = new DrawingVisual();
             double DIVISION = (this.Height - BOTTOM_ZERO - TOP)/6;
+            double division = (MAX - MIN) / 6;
 
              using (DrawingContext dc = visual.RenderOpen())
              {
                  //主线
-                 dc.DrawLine(pen, new Point((this.Width-AXISTHICKNESS)/2, TOP), new Point((this.Width-AXISTHICKNESS)/2, this.Height-BOTTOM));
+                 dc.DrawLine(pen, new Point(LEFT_ZERO , TOP), new Point(LEFT_ZERO, this.Height-BOTTOM));
                  //分度线
                  for(int i = 0; i < 6; i++)
                  {
-                     dc.DrawLine(pen, new Point((this.Width - AXISTHICKNESS) / 2, this.Height - BOTTOM_ZERO - DIVISION * i), new Point((this.Width - AXISTHICKNESS) / 2 - 3, this.Height - BOTTOM_ZERO - DIVISION * i));
+                     string str = (MIN + i * division).ToString();
+                     FormattedText formattedText = new FormattedText(
+                                                                    str,
+                                                                    System.Globalization.CultureInfo.GetCultureInfo("en-us"),
+                                                                    FlowDirection.RightToLeft,
+                                                                    new Typeface("Verdana"),
+                                                                    10,
+                                                                    Brushes.Black);
+
+                     dc.DrawText(formattedText, new Point(LEFT_ZERO - 5 , this.Height - BOTTOM_ZERO - DIVISION * i - 5));
+                     dc.DrawLine(pen, new Point(LEFT_ZERO, this.Height - BOTTOM_ZERO - DIVISION * i), new Point(LEFT_ZERO - 3, this.Height - BOTTOM_ZERO - DIVISION * i));
                  }
                  //三角
-                 dc.DrawLine(pen, new Point((this.Width-AXISTHICKNESS) / 2 , TOP), new Point((this.Width-AXISTHICKNESS)/2 - 8, TOP + 8));
-                 dc.DrawLine(pen, new Point((this.Width - AXISTHICKNESS) / 2 , TOP), new Point((this.Width - AXISTHICKNESS) / 2 + 8, TOP + 8));
+                 dc.DrawLine(pen, new Point(LEFT_ZERO, TOP), new Point(LEFT_ZERO - 8, TOP + 8));
+                 dc.DrawLine(pen, new Point(LEFT_ZERO, TOP), new Point(LEFT_ZERO + 8, TOP + 8));
              }
              this.AddVisual(visual);
         }
-        public void plotX()
+        public void plotX(double MAX, double MIN)
         {
             DrawingVisual visual = new DrawingVisual();
 
             double DIVISION = (this.Width - BOTTOM_ZERO - TOP) / 6;
+            double division = (MAX - MIN) / 6;
 
             using (DrawingContext dc = visual.RenderOpen())
             {
                 //主线
-                dc.DrawLine(pen, new Point(LEFT, (this.Height - AXISTHICKNESS)/2), new Point(this.Width - RIGHT, (this.Height - AXISTHICKNESS)/2));
+                dc.DrawLine(pen, new Point(LEFT_ZERO, this.Height - BOTTOM_ZERO), new Point(this.Width - RIGHT, this.Height - BOTTOM_ZERO));
                 //分度线
                 for (int i = 0; i < 6; i++)
                 {
-                    dc.DrawLine(pen, new Point(LEFT_ZERO + DIVISION * i, (this.Height - AXISTHICKNESS) / 2), new Point(LEFT_ZERO + DIVISION * i, (this.Height - AXISTHICKNESS) / 2 - 3));
+                    dc.DrawLine(pen, new Point(LEFT_ZERO + DIVISION * i, this.Height - BOTTOM_ZERO), new Point(LEFT_ZERO + DIVISION * i, this.Height - BOTTOM_ZERO - 3));
                 }
                 //三角
-                dc.DrawLine(pen, new Point(this.Width - RIGHT, (this.Height - AXISTHICKNESS) / 2), new Point(this.Width - RIGHT - 8, (this.Height - AXISTHICKNESS) / 2 - 8));
-                dc.DrawLine(pen, new Point(this.Width - RIGHT, (this.Height - AXISTHICKNESS) / 2), new Point(this.Width - RIGHT - 8, (this.Height - AXISTHICKNESS) / 2 + 8));
+                dc.DrawLine(pen, new Point(this.Width - RIGHT, this.Height - BOTTOM_ZERO), new Point(this.Width - RIGHT - 8, this.Height - BOTTOM_ZERO - 8));
+                dc.DrawLine(pen, new Point(this.Width - RIGHT, this.Height - BOTTOM_ZERO), new Point(this.Width - RIGHT - 8, this.Height - BOTTOM_ZERO + 8));
             }
             this.AddVisual(visual);
         }
@@ -112,7 +127,7 @@ namespace MvvmLight_home.Model
 
             using (DrawingContext dc = visual.RenderOpen())
             {
-                dc.DrawEllipse(Brushes.Black, null, new Point(LEFT_ZERO - 3, this.Height - BOTTOM_ZERO), 5, 5);
+                dc.DrawEllipse(Brushes.Black, null, new Point(LEFT_ZERO, this.Height - BOTTOM_ZERO), 5, 5);
             }
             this.AddVisual(visual);
         }
