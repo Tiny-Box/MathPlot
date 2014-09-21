@@ -87,7 +87,7 @@
 
     <Grid x:Name="LayoutRoot">
         <Rectangle
-			Fill="White" HorizontalAlignment="Left" Height="580" Margin="10,29,0,-9" Stroke="White" VerticalAlignment="Top" Width="780" RadiusX="10" RadiusY="10">
+			Fill="White" HorizontalAlignment="Left" Height="580" Margin="10,31,0,-11" Stroke="White" VerticalAlignment="Top" Width="780" RadiusX="10" RadiusY="10">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="5" Opacity="0.3"/>
             </Rectangle.Effect>
@@ -124,9 +124,17 @@
             </MenuItem>
             <MenuItem Header="绘图" FontSize="16">
                 <MenuItem 
-					Command="{Binding Plot}"
-					Header="开始绘图..."/>
-                <MenuItem Header="删除指定曲线..." Click="plotax"/>
+					Command="{Binding OpenArgv}"
+					Header="输入参数..."/>
+                <MenuItem
+                    Click="plotax"
+                    Header="绘制坐标轴"/>
+                <MenuItem
+                    Command="{Binding Plot}"
+                    Header="开始绘图"/>
+                <MenuItem 
+                    Click="plotax"
+                    Header="删除指定曲线..."/>
                 <MenuItem 
                     Click="Clear"
                     Header="清空绘图板..."
@@ -172,9 +180,8 @@
 
         <Grid HorizontalAlignment="Left" Height="491" Margin="10,99,0,0" VerticalAlignment="Top" Width="780">
             <Canvas>
-                <Model:Axis x:Name="Yaxis" Width="63" Height="491"></Model:Axis>
-                <Model:Axis x:Name="Xaxis" Width="780" Height="63" Canvas.Top="430"/>
-                <Path Data="{Binding myPathGeometry}" Stroke="Black" StrokeThickness="1"/>
+                <Model:Axis x:Name="axis" Width="780" Height="491"></Model:Axis>
+                <Path Data="{Binding myPathGeometry}" Width="780" Height="491" Stroke="Black" StrokeThickness="1" />
             </Canvas>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="35" Margin="10,64,0,0" VerticalAlignment="Top" Width="780"/>

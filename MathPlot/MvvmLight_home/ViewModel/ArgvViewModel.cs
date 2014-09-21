@@ -148,7 +148,7 @@ namespace MvvmLight_home.ViewModel
                     (o) =>
                     {
                         Messenger.Default.Send<ArgvL>(lineArgv, "Main");
-                        Messenger.Default.Send<ArgvL>(lineArgv, "Axis");
+                        Messenger.Default.Send<ArgvL>(lineArgv, "MainV");
                         ((Window)o).Close();
                     }
                 );

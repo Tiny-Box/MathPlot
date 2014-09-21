@@ -7,16 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using GalaSoft.MvvmLight.Messaging;
-
 namespace MvvmLight_home.Model
 {
     public class Axis:Canvas
     {
         private int TOP = 8;
-        private int BOTTOM = 26;
         private int BOTTOM_ZERO = 33;
-        private int LEFT = 25;
         private int LEFT_ZERO = 50;
         private int RIGHT = 8;
         private static int AXISTHICKNESS = 3;
@@ -77,11 +73,11 @@ namespace MvvmLight_home.Model
              using (DrawingContext dc = visual.RenderOpen())
              {
                  //主线
-                 dc.DrawLine(pen, new Point(LEFT_ZERO , TOP), new Point(LEFT_ZERO, this.Height-BOTTOM));
+                 dc.DrawLine(pen, new Point(LEFT_ZERO , TOP), new Point(LEFT_ZERO, this.Height-BOTTOM_ZERO));
                  //分度线
                  for(int i = 0; i < 6; i++)
                  {
-                     string str = (MIN + i * division).ToString();
+                     string str = String.Format("{0:0.00}", MIN + i * division);
                      FormattedText formattedText = new FormattedText(
                                                                     str,
                                                                     System.Globalization.CultureInfo.GetCultureInfo("en-us"),
@@ -113,7 +109,7 @@ namespace MvvmLight_home.Model
                 //分度线
                 for (int i = 0; i < 6; i++)
                 {
-                    string str = (MIN + i * division).ToString();
+                    string str = String.Format("{0:0.00}", MIN + i * division);      
                     FormattedText formattedText = new FormattedText(
                                                                    str,
                                                                    System.Globalization.CultureInfo.GetCultureInfo("en-us"),

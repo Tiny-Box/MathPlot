@@ -21,27 +21,33 @@ namespace MvvmLight_home
         {
             InitializeComponent();
             Closing += (s, e) => ViewModelLocator.Cleanup();
-            Messenger.Default.Register<LineData>(this, "Main",
+            Messenger.Default.Register<ArgvL>(this, "MainV",
                 n =>
                 {
-                    tempData = n;
+                    tempArgv = n;
                 }
             );
         }
 
-        private LineData tempData = new LineData();
+        private ArgvL tempArgv = new ArgvL();
         
         public void plotax(object obj, RoutedEventArgs e)
         {
+            if (tempArgv.xmin != tempArgv.xmax)
+            {
+                axis.plotY(tempArgv.ymax, tempArgv.ymin);
+                axis.plotX(tempArgv.xmax, tempArgv.xmin);
+                axis.plotZ();
+            }
+            else
+            {
+                MessageBox.Show("请先输入参数。");
+            }
 
-            Yaxis.plotY(10000, 1);
-            Xaxis.plotX(10, 1);
-            Xaxis.plotZ();
         }
         public void Clear(object obj, RoutedEventArgs e)
         {
-            Xaxis.Clear();
-            Yaxis.Clear();
+            axis.Clear();
         }
     }
 }

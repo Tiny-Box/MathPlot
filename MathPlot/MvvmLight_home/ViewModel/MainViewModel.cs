@@ -33,27 +33,7 @@ namespace MvvmLight_home.ViewModel
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
 
-
-        private string _testStr = "abc";
-        public string TestStr
-        {
-            get
-            {
-                return _testStr;
-            }
-
-            set
-            {
-                if (_testStr == value)
-                {
-                    return;
-                }
-
-                _testStr = value;
-                RaisePropertyChanged("TestStr");
-            }
-        }
-
+        #region Value
         private LineData _tempData = new LineData();
         public LineData tempData
         {
@@ -80,6 +60,20 @@ namespace MvvmLight_home.ViewModel
                 RaisePropertyChanged("myPathGeometry");
             }
         }
+
+        private ArgvL _tempArgv = new ArgvL();
+        public ArgvL tempArgv
+        {
+            get
+            {
+                return _tempArgv;
+            }
+            set
+            {
+                _tempArgv = value;
+            }
+        }
+        #endregion 
 
         #region ICommand
         public RelayCommand Open
@@ -118,15 +112,7 @@ namespace MvvmLight_home.ViewModel
         #region Method
         void Plotline()
         {
-            myPathGeometry.Figures.Add(tempData.ToPathFigure());
-        }
-        private void plottest(DrawingVisual visual, Point topLeftCorner, bool isSelected)
-        {
-            using (DrawingContext dc = visual.RenderOpen())
-            {
-                Pen drawingPen = new Pen(Brushes.Black, 3);
-                dc.DrawLine(drawingPen, new Point(0, 50), new Point(50, 0));
-            }
+            myPathGeometry.Figures.Add(tempData.ToPathFigure(tempArgv.xmax, tempArgv.xmin, tempArgv.ymax, tempArgv.ymin));
         }
         #endregion
 
@@ -171,8 +157,17 @@ namespace MvvmLight_home.ViewModel
             (
                 ()=>
                 {
-
+                    Plotline();
                     
+                }
+            );
+
+            OpenArgv = new RelayCommand
+            (
+                () =>
+                {
+                    Argv argv = new Argv();
+                    argv.Show();
                 }
             );
 			drag = new RelayCommand<object>
@@ -195,7 +190,7 @@ namespace MvvmLight_home.ViewModel
             Messenger.Default.Register<ArgvL>(this, "Main",
                        n =>
                        {
-                           
+                           tempArgv = n;
                        }
            );
 
