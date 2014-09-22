@@ -181,10 +181,12 @@
         <Grid HorizontalAlignment="Left" Height="491" Margin="10,99,0,0" VerticalAlignment="Top" Width="780">
             <Canvas>
                 <Model:Axis x:Name="axis" Width="780" Height="491"></Model:Axis>
-                <Path Data="{Binding myPathGeometry}" Width="780" Height="491" Stroke="Black" StrokeThickness="1" />
+                <Path Data="{Binding myPathGeometry}" Width="780" Height="491" Stroke="{Binding Color}" StrokeThickness="1" />
             </Canvas>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="35" Margin="10,64,0,0" VerticalAlignment="Top" Width="780"/>
+        <Grid HorizontalAlignment="Left" Height="35" Margin="10,64,0,0" VerticalAlignment="Top" Width="780">
+            <Label Content="中文" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="780" Height="35" VerticalAlignment="Top"/>
+        </Grid>
 
     </Grid>
 </Window>

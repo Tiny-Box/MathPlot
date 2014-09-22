@@ -34,6 +34,20 @@ namespace MvvmLight_home.ViewModel
         /// </summary>
 
         #region Value
+        public string _title = string.Empty;
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+                RaisePropertyChanged("Title");
+            }
+        }
+
         private LineData _tempData = new LineData();
         public LineData tempData
         {
@@ -58,6 +72,20 @@ namespace MvvmLight_home.ViewModel
             {
                 _myPathGeometry = value;
                 RaisePropertyChanged("myPathGeometry");
+            }
+        }
+
+        private string _color = "Black";
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                _color = value;
+                RaisePropertyChanged("Color");
             }
         }
 
@@ -191,6 +219,8 @@ namespace MvvmLight_home.ViewModel
                        n =>
                        {
                            tempArgv = n;
+                           Color = tempArgv.color.ToString();
+                           Title = tempArgv.title;
                        }
            );
 
