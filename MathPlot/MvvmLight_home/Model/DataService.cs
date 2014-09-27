@@ -29,7 +29,22 @@ namespace MvvmLight_home.Model
             
             if (openFileDialog1.ShowDialog() == true)
             {
-                DataSet dtTemp = excelData(openFileDialog1.FileName);
+                string fileName= openFileDialog1.FileName;
+                string connStr = "";
+                if (fileName.EndsWith("xls"))
+                    connStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1\"";
+                else
+                    connStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 12.0;HDR=NO;IMEX=1\"";
+                DataSet dtTemp = new DataSet();
+
+                OleDbConnection objConn = new OleDbConnection(connStr);
+                objConn.Open();
+
+                OleDbDataAdapter oda = new OleDbDataAdapter("select * from [Sheet1$]", objConn);
+
+                oda.Fill(dtTemp);
+
+                //DataSet dtTemp = excelData(openFileDialog1.FileName);
 
                 judgetitle gwl = (p) =>
                 {

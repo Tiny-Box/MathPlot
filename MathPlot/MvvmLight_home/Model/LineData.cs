@@ -75,16 +75,17 @@ namespace MvvmLight_home.Model
             double Yr = -(HEIGHT - TOP - BOTTOM_ZERO) / (Ymax - Ymin);
             //MessageBox.Show("Yr: " + Yr.ToString());
 
-            //MessageBox.Show("Line[0].X Y: " + this.Line[0].X.ToString() + " " + this.Line[0].Y.ToString());
+            MessageBox.Show("Line[0].X Y: " + this.Line[0].X.ToString() + " " + this.Line[0].Y.ToString());
 
-            Matrix matrix1 = new Matrix(Xr, 0, 0, Yr, LEFT_ZERO, HEIGHT-BOTTOM_ZERO);
+            Matrix matrix1 = new Matrix(Xr, 0, 0, Yr, LEFT_ZERO - Xmin * Xr, HEIGHT-BOTTOM_ZERO + Ymin * (-Yr));
+            //Matrix matrix1 = new Matrix(Xr, 0, 0, Yr, LEFT_ZERO, -Yr + TOP);
             Point[] temp = new Point[this.Line.Count];
 
             for (int i = 0; i < this.Line.Count; i++ )
             {
                 temp[i] = Point.Multiply(this.Line[i], matrix1);
             }
-            //MessageBox.Show("temp[0].X Y: " + temp[0].X.ToString() + " " + temp[0].Y.ToString());
+            MessageBox.Show("temp[0].X Y: " + temp[0].X.ToString() + " " + temp[0].Y.ToString());
 
             pathFigure.StartPoint = Point.Multiply(this.StartPoint, matrix1);
             //MessageBox.Show("StartPoint.X Y: " + pathFigure.StartPoint.X.ToString() + " " + pathFigure.StartPoint.Y.ToString());
