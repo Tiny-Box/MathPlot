@@ -54,11 +54,7 @@ namespace MvvmLight_home.Model
         {
             for(int i = 0; i < visuals.Count; i++)
             {
-                
-                base.RemoveVisualChild(visuals[i]);
-                base.RemoveLogicalChild(visuals[i]);
-                visuals.RemoveAt(i);
-
+                DeleteVisual(visuals[i]);
             }
         }
 

@@ -8,15 +8,9 @@ using Microsoft.Win32;
 
 namespace MvvmLight_home.Model
 {
-    public class DataService : IDataService
+    public class DataService 
     {
-        public void GetData(Action<DataItem, Exception> callback)
-        {
-            // Use this to connect to the actual data service
 
-            var item = new DataItem("Welcome to MVVM Light");
-            callback(item, null);
-        }
         delegate int judgetitle(object a);
         public void OpenExcel(Action<LineData, Exception> callback)
         {

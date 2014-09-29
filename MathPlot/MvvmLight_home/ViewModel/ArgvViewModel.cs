@@ -143,13 +143,26 @@ namespace MvvmLight_home.ViewModel
         /// </summary>
         public ArgvViewModel()
         {
+            
+            Messenger.Default.Register<string>(this, "Argv", n =>{ Ymax = n.Split(' ')[0]; Ymin = n.Split(' ')[1]; }); 
+
             OK = new RelayCommand<object>
                 (
                     (o) =>
                     {
-                        Messenger.Default.Send<ArgvL>(lineArgv, "Main");
-                        Messenger.Default.Send<ArgvL>(lineArgv, "MainV");
-                        ((Window)o).Close();
+                        if((Convert.ToDouble(Ymin)<Convert.ToDouble(Ymax))&&
+                           (Convert.ToDouble(Xmin)<Convert.ToDouble(Xmax))&&
+                           (color != "#00000000")&&(Title != null))
+                        {
+                            Messenger.Default.Send<ArgvL>(lineArgv, "Main");
+                            Messenger.Default.Send<ArgvL>(lineArgv, "MainV");
+                            ((Window)o).Close();
+                            //MessageBox.Show(color);
+                        }
+                        else
+                        {
+                            MessageBox.Show("请补全参数。");
+                        }
                     }
                 );
 

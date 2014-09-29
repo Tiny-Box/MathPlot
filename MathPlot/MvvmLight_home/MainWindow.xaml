@@ -9,7 +9,7 @@
         xmlns:ignore="http://www.ignore.com"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="MvvmLight_home.MainWindow"
         mc:Ignorable="d ignore"
-        Height="600"
+        Height="620"
         Width="800"
         Title="MVVM Light Application"
         WindowStyle="None" Background="{x:Null}" AllowsTransparency="True"
@@ -133,9 +133,6 @@
                     Command="{Binding Plot}"
                     Header="开始绘图"/>
                 <MenuItem 
-                    Click="plotax"
-                    Header="删除指定曲线..."/>
-                <MenuItem 
                     Click="Clear"
                     Header="清空绘图板..."
                           />
@@ -185,7 +182,7 @@
             </Canvas>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="35" Margin="10,64,0,0" VerticalAlignment="Top" Width="780">
-            <Label Content="中文" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="780" Height="35" VerticalAlignment="Top" FontFamily="SimSun"/>
+            <Label Content="{Binding Title}" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="780" Height="35" VerticalAlignment="Top" FontFamily="SimSun"/>
         </Grid>
 
     </Grid>

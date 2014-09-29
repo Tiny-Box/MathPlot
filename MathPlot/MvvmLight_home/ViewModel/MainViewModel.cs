@@ -19,7 +19,7 @@ namespace MvvmLight_home.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly IDataService _dataService;
+        private readonly DataService _dataService;
 
         /// <summary>
         /// The <see cref="WelcomeTitle" /> property's name.
@@ -147,7 +147,7 @@ namespace MvvmLight_home.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IDataService dataService)
+        public MainViewModel(DataService dataService)
         {
             _dataService = dataService;
 
@@ -194,8 +194,11 @@ namespace MvvmLight_home.ViewModel
             (
                 () =>
                 {
+
+                    
                     Argv argv = new Argv();
                     argv.Show();
+         
                 }
             );
 			drag = new RelayCommand<object>
@@ -206,23 +209,23 @@ namespace MvvmLight_home.ViewModel
                 }
             );
 
-            
 
-            Messenger.Default.Register<LineData>(this, "Main",
-                       n =>
-                       {
-                           tempData = n;
-                       }
-           );
 
-            Messenger.Default.Register<ArgvL>(this, "Main",
-                       n =>
-                       {
-                           tempArgv = n;
-                           Color = tempArgv.color.ToString();
-                           Title = tempArgv.title;
-                       }
-           );
+            Messenger.Default.Register<LineData>(this, "Main", n => { tempData = n; Messenger.Default.Send<string>(tempData.getYpar(), "Argv"); }); 
+                       //n =>
+                       //{
+                       //    tempData = n;
+                       //}
+
+
+            Messenger.Default.Register<ArgvL>(this, "Main", n => { tempArgv = n; Color = tempArgv.color.ToString(); Title = tempArgv.title; });
+           //            n =>
+           //            {
+           //                tempArgv = n;
+           //                Color = tempArgv.color.ToString();
+           //                Title = tempArgv.title;
+           //            }
+           //);
 
         }
 

@@ -53,20 +53,22 @@ namespace MvvmLight_home.Model
             Line.Add(new Point(x, y));
         }
 
+        public string getYpar()
+        {
+            double Max = this.Line[0].Y;
+            double Min = Line[0].Y;
+
+            for(int i = 0; i < Line.Count; i++)
+            {
+                Max = (Max > Line[i].Y) ? Max : Line[i].Y;
+                Min = (Min < Line[i].Y) ? Min : Line[i].Y;
+            }
+
+            return Max.ToString() + " " + Min.ToString();
+        }
+
         public PathFigure ToPathFigure(double Xmax, double Xmin, double Ymax, double Ymin)
         {
-            //PathFigure pathFigure = new PathFigure();
-
-            //pathFigure.StartPoint = this.StartPoint;
-
-            //Point[] polyLinePointArray = new Point[this.Line.Count - 1];
-            //for (int i = 1; i < this.Line.Count; i++)
-            //{
-            //    polyLinePointArray[i - 1] = new Point(this.Line[i].X, this.Line[i].Y);
-            //}
-
-            //PolyLineSegment myPolyLineSegment = new PolyLineSegment();
-            //myPolyLineSegment.Points = new PointCollection(polyLinePointArray);
 
             PathFigure pathFigure = new PathFigure();
 
@@ -75,7 +77,7 @@ namespace MvvmLight_home.Model
             double Yr = -(HEIGHT - TOP - BOTTOM_ZERO) / (Ymax - Ymin);
             //MessageBox.Show("Yr: " + Yr.ToString());
 
-            MessageBox.Show("Line[0].X Y: " + this.Line[0].X.ToString() + " " + this.Line[0].Y.ToString());
+            //MessageBox.Show("Line[0].X Y: " + this.Line[0].X.ToString() + " " + this.Line[0].Y.ToString());
 
             Matrix matrix1 = new Matrix(Xr, 0, 0, Yr, LEFT_ZERO - Xmin * Xr, HEIGHT-BOTTOM_ZERO + Ymin * (-Yr));
             //Matrix matrix1 = new Matrix(Xr, 0, 0, Yr, LEFT_ZERO, -Yr + TOP);
@@ -85,7 +87,7 @@ namespace MvvmLight_home.Model
             {
                 temp[i] = Point.Multiply(this.Line[i], matrix1);
             }
-            MessageBox.Show("temp[0].X Y: " + temp[0].X.ToString() + " " + temp[0].Y.ToString());
+            //MessageBox.Show("temp[0].X Y: " + temp[0].X.ToString() + " " + temp[0].Y.ToString());
 
             pathFigure.StartPoint = Point.Multiply(this.StartPoint, matrix1);
             //MessageBox.Show("StartPoint.X Y: " + pathFigure.StartPoint.X.ToString() + " " + pathFigure.StartPoint.Y.ToString());

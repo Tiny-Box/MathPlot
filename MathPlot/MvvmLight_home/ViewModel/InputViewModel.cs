@@ -125,7 +125,7 @@ namespace MvvmLight_home.ViewModel
         /// <summary>
         /// Initializes a new instance of the InputViewModel class.
         /// </summary>
-        public InputViewModel(IDataService dataService)
+        public InputViewModel(DataService dataService)
         {
             
             this.line = new LineData();
