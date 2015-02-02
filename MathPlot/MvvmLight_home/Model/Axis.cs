@@ -52,7 +52,8 @@ namespace MvvmLight_home.Model
 
         public void Clear()
         {
-            for(int i = 0; i < visuals.Count; i++)
+            int len = visuals.Count() - 1;
+            for(int i = len; i >= 0; i--)
             {
                 DeleteVisual(visuals[i]);
             }

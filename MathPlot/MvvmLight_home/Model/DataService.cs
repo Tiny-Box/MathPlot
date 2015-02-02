@@ -24,11 +24,11 @@ namespace MvvmLight_home.Model
             if (openFileDialog1.ShowDialog() == true)
             {
                 string fileName= openFileDialog1.FileName;
-                string connStr = "";
-                if (fileName.EndsWith("xls"))
-                    connStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1\"";
-                else
-                    connStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 12.0;HDR=NO;IMEX=1\"";
+                string connStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 12.0;HDR=NO;IMEX=1\"";
+                //if (fileName.EndsWith("xls"))
+                //    connStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1\"";
+                //else
+                //    connStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + fileName + ";" + ";Extended Properties=\"Excel 12.0;HDR=NO;IMEX=1\"";
                 DataSet dtTemp = new DataSet();
 
                 OleDbConnection objConn = new OleDbConnection(connStr);

@@ -140,7 +140,8 @@ namespace MvvmLight_home.ViewModel
         #region Method
         void Plotline()
         {
-            myPathGeometry.Figures.Add(tempData.ToPathFigure(tempArgv.xmax, tempArgv.xmin, tempArgv.ymax, tempArgv.ymin));
+            //myPathGeometry.Figures.Add(tempData.ToPathFigure(tempArgv.xmax, tempArgv.xmin, tempArgv.ymax, tempArgv.ymin));
+            myPathGeometry.Figures.Add(tempData.ToSmooth(tempArgv.xmax, tempArgv.xmin, tempArgv.ymax, tempArgv.ymin));
         }
         #endregion
 
