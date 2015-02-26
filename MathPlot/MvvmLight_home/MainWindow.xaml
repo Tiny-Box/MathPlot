@@ -120,7 +120,7 @@
                 </MenuItem>
                 <MenuItem Header="保存图片..."/>
                 <Separator/>
-                <MenuItem Header="退出..." FontSize="16"/>
+                <MenuItem Header="退出..." Click="Close" FontSize="16"/>
             </MenuItem>
             <MenuItem Header="绘图" FontSize="16">
                 <MenuItem 

@@ -49,5 +49,10 @@ namespace MvvmLight_home
         {
             axis.Clear();
         }
+
+        public void Close(object obj, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
