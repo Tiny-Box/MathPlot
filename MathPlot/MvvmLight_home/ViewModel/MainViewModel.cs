@@ -213,20 +213,9 @@ namespace MvvmLight_home.ViewModel
 
 
             Messenger.Default.Register<LineData>(this, "Main", n => { tempData = n; Messenger.Default.Send<string>(tempData.getYpar(), "Argv"); }); 
-                       //n =>
-                       //{
-                       //    tempData = n;
-                       //}
 
 
             Messenger.Default.Register<ArgvL>(this, "Main", n => { tempArgv = n; Color = tempArgv.color.ToString(); Title = tempArgv.title; });
-           //            n =>
-           //            {
-           //                tempArgv = n;
-           //                Color = tempArgv.color.ToString();
-           //                Title = tempArgv.title;
-           //            }
-           //);
 
         }
 
